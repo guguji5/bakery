@@ -1,0 +1,14 @@
+bakeryApi/node_modules
+bakeryWeb/node_modules
+bakeryWeb/.idea
+.idea/
+bakeryApi/db.js
+bakeryApi/insert.js
+bakeryApi/insert_product_detail.js
+bakeryApi/insert_size.js
+bakeryApi/insert_tags.js
+bakeryApi/insert_user.js
+bakeryWeb/.babelrc
+bakeryWeb/.editorconfig
+bakeryWeb/.postcssrc.js
+bakeryWeb/README.md

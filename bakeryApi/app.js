@@ -41,6 +41,11 @@ app.use('/order',require('./routes/order'))
 // 新增订单
 app.use('/about',require('./routes/about'))
 
+//test接口
+app.get('/test', function (req, res) {
+    res.send('GET request to homepage');
+});
+
 const port = process.env.PORT || 3000
 
 app.listen(port, () => {
