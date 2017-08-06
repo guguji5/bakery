@@ -14,11 +14,11 @@ app.all('*', function (req, res, next) {
   res.header("Content-Type", "application/json;charset=utf-8")
   next()
 })
-
+app.set('views', path.join(__dirname, 'view'));
+app.set('view engine', 'jade');
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json())//解析请求体
-
-
 
 
 // 获取全部蛋糕list
@@ -45,6 +45,30 @@ app.use('/about',require('./routes/about'))
 app.get('/test', function (req, res) {
     res.send('GET request to homepage');
 });
+app.get('/g', function (req, res, next) {
+
+    var options = {
+        root: __dirname + '/view/',
+        headers: {
+            'x-timestamp': Date.now(),
+            'x-sent': true,
+            "Content-Type":"text/html;charset=utf-8"
+
+        }
+    };
+
+    res.sendFile('index.html', options, function (err) {
+        if (err) {
+            console.log(err);
+            res.status(err.status).end();
+        }
+        else {
+            console.log(err)
+            console.log('Sent:guguji');
+        }
+    });
+
+})
 
 const port = process.env.PORT || 3000
 
