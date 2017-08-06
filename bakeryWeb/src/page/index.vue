@@ -1,10 +1,10 @@
 <template>
     <div>
         <header id="header-index">
-            <div class="header_l"> <a class="logo" href="http://m.holiland.com/"> 首页 </a> <span class="city">北京 </span>    </div>
+            <div class="header_l"> <a class="logo" @click="jump"> 首页 </a> <span class="city">北京 </span>    </div>
             <div class="header_r">
-                <!--登录后--><a href="http://m.holiland.com/mobile/user.php">1890339...</a><!--登录后-->
-                丨<a href="http://m.holiland.com/mobile/flow.php">购物车</a> </div>
+                <!--登录后--><a @click="jump">1890339...</a><!--登录后-->
+                丨<a @click="jump">购物车</a> </div>
         </header>
         <!--头部-->
         <section class="ui-container">
@@ -17,7 +17,7 @@
                 </mt-swipe>
             </div>
             <!-- 轮播图-->
-            <form method="get" action="http://m.holiland.com/mobile/search.php">
+            <form method="get" >
                 <div class="ui-searchbar ui-form">
                     <button type="submit" class="btn"> </button>
                     <input value="" type="search" name="keywords" placeholder="商品搜索：请输入商品关键字" class="input radius5">
@@ -26,14 +26,14 @@
 
             <div class="nav">
                 <ul class="nav-list">
-                    <li><a href="http://m.holiland.com/mobile/category.php?c_id=2"> <img src="../assets/images/1450656899608763836.jpg"> </a></li>
-                    <li><a href="http://m.holiland.com/mobile/category.php?c_id=3"> <img src="../assets/images/1450657023101437666.jpg"> </a></li>
-                    <li><a href="http://m.holiland.com/mobile/category.php?c_id=4"> <img src="../assets/images/1456961898074415077.jpg"> </a></li>
+                    <li><a @click="jump"> <img src="../assets/images/1450656899608763836.jpg"> </a></li>
+                    <li><a @click="jump"> <img src="../assets/images/1450657023101437666.jpg"> </a></li>
+                    <li><a @click="jump"> <img src="../assets/images/1456961898074415077.jpg"> </a></li>
                 </ul>
                 <ul class="ui-row-flex">
-                    <li class="ui-col"><a target="_blank" href="http://m.holiland.com/mobile/affiche.php?ad_id=14&amp;uri=article.php%3Fid%3D30"> <img src="../assets/images/1448516677153920740.jpg"></a></li>
-                    <li class="ui-col"><a target="_blank" href="http://m.holiland.com/mobile/affiche.php?ad_id=15&amp;uri=article.php%3Fid%3D34"> <img src="../assets/images/1451356012708821874.jpg"></a></li>
-                    <li class="ui-col"><a target="_blank" href="http://m.holiland.com/mobile/affiche.php?ad_id=16&amp;uri=article.php%3Fid%3D35"> <img src="../assets/images/1463966021569278851.jpg"></a></li>
+                    <li class="ui-col"><a @click="jump"> <img src="../assets/images/1448516677153920740.jpg"></a></li>
+                    <li class="ui-col"><a @click="jump"> <img src="../assets/images/1451356012708821874.jpg"></a></li>
+                    <li class="ui-col"><a @click="jump"> <img src="../assets/images/1463966021569278851.jpg"></a></li>
                 </ul>
             </div>
         </section>
@@ -57,6 +57,11 @@
             fakeData(){
                 return this.$store.state.fakeData
             }
+        },
+        methods:{
+            jump(){
+                this.$router.push({ name: 'category',})
+            },
         },
         mounted(){
             let that=this;
