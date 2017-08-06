@@ -45,30 +45,30 @@ app.use('/about',require('./routes/about'))
 app.get('/test', function (req, res) {
     res.send('GET request to homepage');
 });
-app.get('/g', function (req, res, next) {
-
-    var options = {
-        root: __dirname + '/view/',
-        headers: {
-            'x-timestamp': Date.now(),
-            'x-sent': true,
-            "Content-Type":"text/html;charset=utf-8"
-
-        }
-    };
-
-    res.sendFile('index.html', options, function (err) {
-        if (err) {
-            console.log(err);
-            res.status(err.status).end();
-        }
-        else {
-            console.log(err)
-            console.log('Sent:guguji');
-        }
-    });
-
-})
+// app.get('/g', function (req, res, next) {
+//
+//     var options = {
+//         root: __dirname + '/view/',
+//         headers: {
+//             'x-timestamp': Date.now(),
+//             'x-sent': true,
+//             "Content-Type":"text/html;charset=utf-8"
+//
+//         }
+//     };
+//
+//     res.sendFile('index.html', options, function (err) {
+//         if (err) {
+//             console.log(err);
+//             res.status(err.status).end();
+//         }
+//         else {
+//             console.log(err)
+//             console.log('Sent:guguji');
+//         }
+//     });
+//
+// })
 
 const port = process.env.PORT || 3000
 
