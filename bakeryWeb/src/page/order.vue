@@ -27,7 +27,7 @@
                     <li class="t ui-border-b">订单号：{{item._id}}</li>
                     <li class="ui-border-b link" v-for="good in item.goods">
                         <div class="ui-list-thumb">
-                            <img :src="'http://localhost:3000'+good.img_url">
+                            <img :src="good.img_url">
                         </div>
                         <div class="ui-list-info">
                             <div class="ms"><h4 class="ui-nowrap">{{good.name}}</h4><p class="c-ccc"> {{good.sizeContent}}

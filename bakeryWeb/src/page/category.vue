@@ -34,8 +34,8 @@
                 <div class="box">
                     <div class="imgur">
                         <!-- 参数就这么简单粗暴的带过去了-->
-                        <router-link :to="{ name: 'product', params: { id: item._id }}"><img :src="'http://localhost:3000'+item.img_url"></router-link>
-                        <!--<a href="javascript:"><img :src="'http://localhost:3000'+item.img_url"></a>-->
+                        <router-link :to="{ name: 'product', params: { id: item._id }}"><img :src="item.img_url"></router-link>
+                        <!--<a href="javascript:"><img :src="item.img_url"></a>-->
                     </div>
                     <div class="ui-nowrap t">
                         <router-link :to="{ name: 'product', params: { id: item._id }}">{{item.name}}</router-link>

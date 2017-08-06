@@ -11,9 +11,9 @@
             <mt-tab-container-item id="1">
                 <section class="xq-y">
                     <!--轮播图-->
-                    <div style="height:281px"><!--<img :src="'http://localhost:3000'+item.img_url">-->
+                    <div style="height:281px"><!--<img :src="item.img_url">-->
                         <mt-swipe :auto="4000">
-                            <mt-swipe-item v-for="item in data.banners" :key="item.index"><img :src="'http://localhost:3000'+item"></mt-swipe-item>
+                            <mt-swipe-item v-for="item in data.banners" :key="item.index"><img :src="item"></mt-swipe-item>
                         </mt-swipe>
                     </div>
 
@@ -46,7 +46,7 @@
                             {{data.detail_content}}
                         </p>
                         <p v-for="item in data.detail_img">
-                            <img :src="'http://localhost:3000'+item">
+                            <img :src="item">
                         </p>
                     </div>
                 </section>
@@ -81,7 +81,7 @@
             <div class="name-card ">
                 <ul class="ui-list ui-border-tb">
                     <li>
-                        <div class="thumb"><img :src="'http://localhost:3000'+data.img_url"></div>
+                        <div class="thumb"><img :src="data.img_url"></div>
                         <div class="ui-list-info">
                             <h4 class="ui-nowrap">{{data.name}}</h4>
                             <p class="ui-nowrap c-blue shop_price">

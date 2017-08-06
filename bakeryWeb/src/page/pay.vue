@@ -119,7 +119,7 @@
         <!--购物信息-->
         <ul class="ui-list ui-list-one cp mb10">
             <li v-for="item in goods">
-                <div class="ui-list-thumb"><img :src="'http://localhost:3000'+item.img_url"></div>
+                <div class="ui-list-thumb"><img :src="item.img_url"></div>
                 <div class="ui-list-info">
                     <div class="ms">
                         <h4 class="ui-nowrap">{{item.name}}</h4>

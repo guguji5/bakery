@@ -10,7 +10,7 @@
                         <label class="ui-checkbox-s">
                             <input type="checkbox" :checked="item.isSelect" @click="item.isSelect=!item.isSelect;calcAmount()">
                         </label>
-                        <div class="ui-list-thumb"><img :src="'http://localhost:3000'+item.img_url"></div>
+                        <div class="ui-list-thumb"><img :src="item.img_url"></div>
                         <div class="ui-list-info">
                             <div class="ms">
                                 <h4 class="ui-nowrap" style="overflow:inherit;">

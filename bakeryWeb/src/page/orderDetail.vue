@@ -11,7 +11,7 @@
 
                 <li>
                     <div class="ui-list-thumb">
-                        <img :src="'http://localhost:3000'+item.img_url">
+                        <img :src="item.img_url">
                     </div>
                     <div class="ui-list-info">
                         <div class="ms"><h4 class="ui-nowrap">{{item.name}}</h4><p class="c-ccc"> {{item.sizeContent}}
