@@ -1,5 +1,5 @@
 import axios from 'axios'
-axios.defaults.baseURL = 'http://localhost:3000';
+// axios.defaults.baseURL = 'http://localhost:3000';
 // axios.defaults.baseURL = 'api';
 // axios.defaults.headers.put['Content-Type'] = 'application/json;charset=UTF-8';
 //添加一个请求拦截器
