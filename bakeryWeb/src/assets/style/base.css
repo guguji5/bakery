@@ -127,7 +127,7 @@ i.ico-cg{background:url(../images/ico-cg.png) no-repeat center;background-size:2
 /*首页头部*/
 #header-index {z-index: 999;background-color: #f9f9f9;position: relative;height: 60px;display: block; border-bottom:1px solid #dddddd }
 #header-index .header_l{position: absolute; top: 0; left: 10px;}
-#header-index .header_l .logo{width: 80px; height: 60px; display: block; text-indent: -999em; overflow: hidden; background: url(../images/logo.png) no-repeat center left;  background-size: 80px; float:left}
+#header-index .header_l .logo{width: 80px; height: 60px; display: block; text-indent: -999em; overflow: hidden; background: url(../images/logo.png) no-repeat center left;  background-size: 80px; float:left;background-position-y: 19px}
 #header-index .header_l .city{display:block; float:left;color:#6dc2df;background: url(../images/ico-city.png) no-repeat 5px 33px ;background-size: 10px; padding-left:20px; padding-top:30px;}
 #header-index .header_r{position: absolute; top: 10px; right: 10px; color:#6dc2df; line-height:60px;}
 #header-index .header_r a{ color:#6dc2df; padding:0 5px;}
