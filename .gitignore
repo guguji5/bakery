@@ -12,3 +12,4 @@ bakeryWeb/.babelrc
 bakeryWeb/.editorconfig
 bakeryWeb/.postcssrc.js
 bakeryWeb/README.md
+release.sh
