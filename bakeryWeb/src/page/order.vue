@@ -32,7 +32,7 @@
                         <div class="ui-list-info">
                             <div class="ms"><h4 class="ui-nowrap">{{good.name}}</h4><p class="c-ccc"> {{good.sizeContent}}
                             </p></div>
-                            <div class="ui-txt-info"><p>{{good.price}}</p><p style="  text-align: right;">×{{good.piece}}</p> </div>
+                            <div class="ui-txt-info"><p>{{good.price | currency}}</p><p style="  text-align: right;">×{{good.piece}}</p> </div>
                         </div>
                     </li>
                     <li class="t"><div class="j-g ">总价：<em class="c-blue">{{item.amount}}</em></div>

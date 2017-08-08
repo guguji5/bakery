@@ -22,8 +22,8 @@
                     <div class="g-g">
                         <ul class="ui-list-text bg-fff">
                             <li class="ui-border-b p10">{{data.name}}
-                                <p class="c-blue" v-show="data.minPrice == data.maxPrice"> {{data.minPrice}} - {{data.maxPrice}}</p>
-                                <p class="c-blue" v-show="data.minPrice < data.maxPrice"> {{data.minPrice}} - {{data.maxPrice}}</p>
+                                <p class="c-blue" v-show="data.minPrice == data.maxPrice"> {{data.minPrice | currency}}</p>
+                                <p class="c-blue" v-show="data.minPrice < data.maxPrice"> {{data.minPrice | currency}} - {{data.maxPrice | currency}}</p>
                             </li>
                             <li class="p10"><em class="c-999">规格:</em>
                                 <span v-for="item in data.sizeContent"> {{item}} </span>
@@ -85,7 +85,7 @@
                         <div class="ui-list-info">
                             <h4 class="ui-nowrap">{{data.name}}</h4>
                             <p class="ui-nowrap c-blue shop_price">
-                                <span v-for="(item,index) in data.prices" v-show="priceSelect==index">{{item}}</span>
+                                <span v-for="(item,index) in data.prices" v-show="priceSelect==index">{{item | currency}}</span>
                             </p>
                         </div>
                     </li>

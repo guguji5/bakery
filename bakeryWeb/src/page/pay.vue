@@ -127,7 +127,7 @@
                         </p>
                     </div>
                     <div class="ui-txt-info">
-                        <p>{{item.price}}</p>
+                        <p>{{item.price | currency}}</p>
                         <p style=" text-align: right;">×{{item.piece}}</p>
                         <div>
                         </div>
@@ -145,7 +145,7 @@
                 <label>留&nbsp;&nbsp;&nbsp;&nbsp;言</label>
                 <textarea placeholder="100汉字以内" maxlength="200"  class="ui-textarea" style="height:45px;" v-model="remark"></textarea>
             </li>
-            <li>运费 <span class="r shipping_fee">{{fee}}</span></li>
+            <li>运费 <span class="r shipping_fee">{{fee | currency}}</span></li>
             <li class=" mb10"><!--<a href="javascript:void(0);" class="c-999">不包含商品</a>--></li>
             <!-- <li class="mb10">合计<span class="r c-blue">￥84.00</span> </li> -->
         </ul>
@@ -217,8 +217,8 @@
         <div style="height:10px;background:#f8f8f8;border-top:1px solid #f1f1f1;"></div>
         <div id="total">
             <div class="ui-border-tb ui-txt-c  bg-fff order" style="margin-bottom:0;">
-                <p>{{amount}}+{{fee}}运费 </p>
-                <p class="c-blue">需付{{amount+fee}}</p>
+                <p>{{amount | currency}} + {{fee | currency}}运费 </p>
+                <p class="c-blue">需付{{amount+fee | currency}}</p>
             </div>
         </div>
         <!--<ul class=" ui-border-t nav-xd bg-fff p10 payListBox" style="background:#f8f8f8;">-->

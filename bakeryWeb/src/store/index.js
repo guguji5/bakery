@@ -23,20 +23,14 @@ const store = new Vuex.Store({
         }
     },
     mutations: {
-        addQueue(state, item){
-            if (!(state.trackQueue.some(function (val) {
-                    return val.id == item.id
-                }))) {
-                state.trackQueue.push(item)
-                state.trackIndex=state.trackQueue.length-1;
-            }else{
-                // console.log(state.trackQueue.indexOf(item));
-                state.trackIndex = state.trackQueue.indexOf(item)
-            }
-
-        },
         loadChange(state){
             state.isloading=!state.isloading;
+        },
+        loadTrue(state){
+            state.isloading=true;
+        },
+        loadFalse(state){
+            state.isloading=false;
         }
 
     },

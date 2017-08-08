@@ -23,8 +23,8 @@
                     排序
                 </em>
                 <div class="p-x">
-                    <a href="http://m.holiland.com/mobile/category.php?c_id=27&amp;order_price=1&amp;sort=shop_price&amp;order=ASC">价格</a>
-                    <a href="category.php?c_id=27&snum=1&sort=snum&order=ASC">销量</a>
+                    <a href="">价格</a>
+                    <a href="">销量</a>
                 </div>
             </li>
         </ul>
@@ -41,7 +41,7 @@
                         <router-link :to="{ name: 'product', params: { id: item._id }}">{{item.name}}</router-link>
                     </div>
                     <div class="j-g">
-                        <em class="c-blue">{{item.price}}</em>
+                        <em class="c-blue">{{item.price | currency}}</em>
                         <a href="javascript:" class="tj"></a>
                     </div>
                 </div>

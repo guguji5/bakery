@@ -3,7 +3,7 @@
     <div class="block">
 
         <section class="gw-c">
-            <form id="formCart" name="formCart" method="post" action="http://m.holiland.com/mobile/flow.php">
+            <form id="formCart">
                 <ul class="ui-list ui-list-one cp">
 
                     <li class="ui-border-b" v-for="item in carts">
@@ -19,7 +19,7 @@
                                 </p>
                             </div>
                             <div class="ui-txt-info">
-                                <p>{{item.price}}</p>
+                                <p>{{item.price | currency}}</p>
                                 <p>×{{item.piece}}</p>
                                 <div>
                                     <a class="date c-ccc del_goods" style="cursor:pointer" @click="remove({'productId':item.productId,'size':item.size})">删除</a>
@@ -32,7 +32,6 @@
                             </div>
                         </div>
                     </li>
-                    <input type="hidden" name="step" value="update_cart">
                 </ul>
             </form>
 
@@ -43,12 +42,11 @@
 			</span>
 
                 <span class="tx-r">
-				<em class="c-ccc" style="color:#626262">（不含运费）</em>总计： <em class="price c-blue">{{amount}}</em>
+				<em class="c-ccc" style="color:#626262">（不含运费）</em>总计： <em class="price c-blue">{{amount | currency}}</em>
 				<a @click="goPay" class="x-b">下一步</a>
 			</span>
             </div>
         </section>
-        <mt-spinner type="triple-bounce" color="red"></mt-spinner>
     </div>
 </template>
 
@@ -139,7 +137,7 @@
         mounted(){
             let that=this;
             let cart=JSON.parse(localStorage.getItem('cart'));
-            if(typeof(cart)=='object'){
+            if(Object.prototype.toString.call(cart).indexOf('Array')>-1 && cart.length>0){
                 cartInfo(cart).then(function (res) {
                     if(res.data){
                         cart.forEach(function (value,key) {

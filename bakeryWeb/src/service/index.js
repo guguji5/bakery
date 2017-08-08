@@ -1,24 +1,30 @@
-import axios from 'axios'
-// axios.defaults.baseURL = 'http://localhost:3000';
+import axios from 'axios';
+import store from '../store/'
+if(window.location.origin!="http://52.15.185.161:3000"){
+    axios.defaults.baseURL = 'http://localhost:3000';
+}
+
 // axios.defaults.baseURL = 'api';
 // axios.defaults.headers.put['Content-Type'] = 'application/json;charset=UTF-8';
 //添加一个请求拦截器
 axios.interceptors.request.use(function(config){
     //在请求发出之前进行一些操作
+    store.commit('loadTrue');
     //弹出遮罩层
     return config;
 },function(err){
     //Do something with request error
-    return Promise.reject(error);
+    return Promise.reject(err);
 });
 //添加一个响应拦截器
 axios.interceptors.response.use(function(res){
     //在这里对返回的数据进行处理
+    store.commit('loadFalse');
     //去掉遮罩层
     return res;
 },function(err){
     //Do something with response error
-    return Promise.reject(error);
+    return Promise.reject(err);
 })
 
 
