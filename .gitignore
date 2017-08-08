@@ -1,6 +1,7 @@
 bakeryApi/node_modules
 bakeryWeb/node_modules
 bakeryWeb/.idea
+bakeryWeb/dist
 .idea/
 bakeryApi/db.js
 bakeryApi/insert.js
