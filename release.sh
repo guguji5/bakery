@@ -1,3 +1,5 @@
+#!/bin/bash
+
 rm bakeryApi/public/index.html
 rm bakeryApi/public/static -r
 cp bakeryWeb/dist/index.html bakeryApi/public
@@ -12,6 +14,6 @@ cp -r bakeryWeb/dist/static bakeryApi/public
 
 git add bakeryApi/public
 msg='public is commited auto in '`date "+%Y-%m-%d %H:%M:%S"`
-git commit -m $msg bakeryApi/public
+git commit -m "$msg" bakeryApi/public
 git pull
 git push
