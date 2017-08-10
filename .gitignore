@@ -12,5 +12,5 @@ bakeryApi/insert_user.js
 bakeryWeb/.babelrc
 bakeryWeb/.editorconfig
 bakeryWeb/.postcssrc.js
-bakeryWeb/README.md
-release.sh
+
+
