@@ -12,9 +12,9 @@
             <!-- 轮播图-->
             <div style="height:180px">
                 <mt-swipe :auto="4000">
-                    <mt-swipe-item><img src="../assets/images/1456961924765976937.jpg" alt=""></mt-swipe-item>
-                    <mt-swipe-item><img src="../assets/images/1450656899608763836.jpg" alt=""></mt-swipe-item>
-                    <mt-swipe-item><img src="../assets/images/1450656980633615476.jpg" alt=""></mt-swipe-item>
+                    <mt-swipe-item><img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien2vq1c7j20ro0cn0tu.jpg" alt=""></mt-swipe-item>
+                    <mt-swipe-item><img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien3awmr2j20qo0cign2.jpg" alt=""></mt-swipe-item>
+                    <mt-swipe-item><img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien3rdbcuj20qo0cimxo.jpg" alt=""></mt-swipe-item>
                 </mt-swipe>
             </div>
             <!-- 轮播图-->
@@ -27,14 +27,14 @@
 
             <div class="nav">
                 <ul class="nav-list">
-                    <li><a @click="jump"> <img src="../assets/images/1450656899608763836.jpg"> </a></li>
-                    <li><a @click="jump"> <img src="../assets/images/1450657023101437666.jpg"> </a></li>
-                    <li><a @click="jump"> <img src="../assets/images/1456961898074415077.jpg"> </a></li>
+                    <li><a @click="jump"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien3awmr2j20qo0cign2.jpg"> </a></li>
+                    <li><a @click="jump"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien43k3bwj20qo0citab.jpg"> </a></li>
+                    <li><a @click="jump"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien4xp7ctj20ro0cnjsb.jpg"> </a></li>
                 </ul>
                 <ul class="ui-row-flex">
-                    <li class="ui-col"><a @click="jump"> <img src="../assets/images/1448516677153920740.jpg"></a></li>
-                    <li class="ui-col"><a @click="jump"> <img src="../assets/images/1451356012708821874.jpg"></a></li>
-                    <li class="ui-col"><a @click="jump"> <img src="../assets/images/1463966021569278851.jpg"></a></li>
+                    <li class="ui-col"><a @click="jump"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fielyr3ykfj205u03w3yr.jpg"></a></li>
+                    <li class="ui-col"><a @click="jump"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien6657z9j205u03wjrd.jpg"></a></li>
+                    <li class="ui-col"><a @click="jump"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien6kc4arj205u03wt9h.jpg"></a></li>
                 </ul>
             </div>
         </section>
