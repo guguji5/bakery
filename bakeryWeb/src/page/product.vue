@@ -118,8 +118,20 @@
 </template>
 
 <script>
-    import { MessageBox } from 'mint-ui';
+    import Vue from 'vue'
     import { productDetail } from '../service';
+    import { MessageBox } from 'mint-ui';
+
+    import { Navbar, TabItem } from 'mint-ui';
+
+    Vue.component(Navbar.name, Navbar);
+    Vue.component(TabItem.name, TabItem);
+
+    import { TabContainer, TabContainerItem } from 'mint-ui';
+
+    Vue.component(TabContainer.name, TabContainer);
+    Vue.component(TabContainerItem.name, TabContainerItem);
+
     export default {
         name: 'product',
         data () {

@@ -9,7 +9,11 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import foot from './components/footer.vue';
+import { Spinner } from 'mint-ui';
+
+Vue.component(Spinner.name, Spinner);
 export default {
   name: 'app',
   data(){

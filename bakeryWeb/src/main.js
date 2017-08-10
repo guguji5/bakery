@@ -5,11 +5,11 @@ import App from './App'
 import router from './router'
 import store from './store/'
 import filters from './service/filters'
-import Mint from 'mint-ui';
+// import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css';
 import './assets/style/style.css';//引入好利来 样式
 import './assets/style/base.css';//引入好利来 样式
-Vue.use(Mint);
+// Vue.use(Mint);
 Vue.config.productionTip = false
 
 Object.keys(filters).forEach(function (key, index, arr) {
