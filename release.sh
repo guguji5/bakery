@@ -1,5 +1,9 @@
 #!/bin/bash
 
+cd bakeryWeb
+npm run build
+cd ..
+
 rm bakeryApi/public/index.html
 rm bakeryApi/public/static -r
 cp bakeryWeb/dist/index.html bakeryApi/public
