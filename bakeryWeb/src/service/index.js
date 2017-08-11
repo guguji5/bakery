@@ -1,7 +1,7 @@
 import axios from 'axios';
 import store from '../store/'
-if(window.location.origin!="http://52.15.185.161:80" && window.location.origin!="https://www.guguji.top"){
-    axios.defaults.baseURL = 'http://localhost:80';
+if(window.location.origin!="http://52.15.185.161:3000" && window.location.origin!="https://www.guguji.top"){
+    axios.defaults.baseURL = 'http://localhost:3000';
 }
 
 // axios.defaults.baseURL = 'api';
