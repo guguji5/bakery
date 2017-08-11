@@ -1,8 +1,12 @@
-const express = require('express')
+const express = require('express');
+const compression = require('compression');
 const http = require('http')
 const path = require('path')
 const app = express();
 const bodyParser = require('body-parser')
+
+//尽量在其他中间件前使用compression
+app.use(compression());
 
 // 跨域设置
 app.all('*', function (req, res, next) {
@@ -45,30 +49,7 @@ app.use('/about',require('./routes/about'))
 app.get('/test', function (req, res) {
     res.send('GET request to homepage');
 });
-// app.get('/g', function (req, res, next) {
-//
-//     var options = {
-//         root: __dirname + '/view/',
-//         headers: {
-//             'x-timestamp': Date.now(),
-//             'x-sent': true,
-//             "Content-Type":"text/html;charset=utf-8"
-//
-//         }
-//     };
-//
-//     res.sendFile('index.html', options, function (err) {
-//         if (err) {
-//             console.log(err);
-//             res.status(err.status).end();
-//         }
-//         else {
-//             console.log(err)
-//             console.log('Sent:guguji');
-//         }
-//     });
-//
-// })
+
 
 const port = process.env.PORT || 3000
 
