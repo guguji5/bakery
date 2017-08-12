@@ -58,7 +58,7 @@ app.use('/order',require('./routes/order'))
 app.use('/about',require('./routes/about'))
 
 // 微信接口
-app.use('/WeChet',require('./routes/WeChet'))
+app.use('/WeChat',require('./routes/WeChat'))
 
 
 //test接口
