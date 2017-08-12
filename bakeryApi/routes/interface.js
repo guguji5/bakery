@@ -1,43 +1,36 @@
 const express = require("express")
 const router = express();
+const crypto =  require('crypto'); //引入加密模块
 const d = require('../dbconf/')
 const date = require('../dbconf/date')
 const uid = require('../dbconf/uid')
 const log = require('../dbconf/log')
 var ObjectId = require('mongodb').ObjectID;
 var async = require("async");
-var jsSHA = require('jssha');
 
 router.get("/", (req, res) => {
+    //1.获取微信服务器Get请求的参数 signature、timestamp、nonce、echostr
+    var token ='guguji',
+        signature = req.query.signature,//微信加密签名
+        timestamp = req.query.timestamp,//时间戳
+        nonce = req.query.nonce,//随机数
+        echostr = req.query.echostr;//随机字符串
 
-    // res.type('application/json');
-    let token="guguji";
-    let signature = req.query.signature;
-    let timestamp = req.query.timestamp;
-    let echostr   = req.query.echostr;
-    let nonce     = req.query.nonce;
+    //2.将token、timestamp、nonce三个参数进行字典序排序
+    var array = [token,timestamp,nonce];
+    array.sort();
 
-    let oriArray = new Array();
-    oriArray[0] = nonce;
-    oriArray[1] = timestamp;
-    oriArray[2] = token;
-    oriArray.sort();
+    //3.将三个参数字符串拼接成一个字符串进行sha1加密
+    var tempStr = array.join('');
+    const hashCode = crypto.createHash('sha1'); //创建加密类型
+    var resultCode = hashCode.update(tempStr,'utf8').digest('hex'); //对传入的字符串进行加密
 
-    let original = oriArray.join('');
-    var shaObj = new jsSHA(original, 'TEXT');
-    var scyptoString=shaObj.getHash('SHA-1', 'HEX');
-
-    if(signature == scyptoString){
-        //验证成功
-        console.log('interface接入成功了')
-        res.send(echostr)
-    } else {
-        //验证失败
-        res.send('interface接入失败了')
+    //4.开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
+    if(resultCode === signature){
+        res.send(echostr);
+    }else{
+        res.send('mismatch');
     }
-
-
-
 
 })
 
