@@ -4,7 +4,7 @@ const http = require('http')
 const path = require('path')
 const app = express();
 const bodyParser = require('body-parser')
-
+require('body-parser-xml')(bodyParser);
 //尽量在其他中间件前使用compression
 app.use(compression());
 
