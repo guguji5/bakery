@@ -36,4 +36,22 @@ router.get("/", (req, res) => {
 
 })
 
+router.post('/', function (req, res) {
+
+    res.writeHead(200, {'Content-Type': 'application/xml'});
+
+    var data = req.body.xml;
+    var resMsg = '<xml>' +
+        '<ToUserName><![CDATA[' + data.fromusername + ']]></ToUserName>' +
+        '<FromUserName><![CDATA[' + data.tousername + ']]></FromUserName>' +
+        '<CreateTime>' + parseInt(new Date().valueOf() / 1000) + '</CreateTime>' +
+        '<MsgType><![CDATA[text]]></MsgType>' +
+        '<Content><![CDATA['+data.content+']]></Content>' +
+        '</xml>';
+    console.log(resMsg);
+    res.end(resMsg);
+});
+
+
+
 module.exports = router
