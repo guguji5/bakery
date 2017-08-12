@@ -12,5 +12,6 @@ bakeryApi/insert_user.js
 bakeryWeb/.babelrc
 bakeryWeb/.editorconfig
 bakeryWeb/.postcssrc.js
-bakeryWeb/README.md
+bakeryWeb/README.md 
+bakeryApi/package-lock.json
 bakeryApi/npm-debug.log
