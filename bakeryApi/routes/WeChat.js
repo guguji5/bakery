@@ -41,13 +41,27 @@ router.post('/', function (req, res) {
     res.writeHead(200, {'Content-Type': 'application/xml'});
 
     var data = req.body.xml;
-    var resMsg = '<xml>' +
-        '<ToUserName><![CDATA[' + data.fromusername + ']]></ToUserName>' +
-        '<FromUserName><![CDATA[' + data.tousername + ']]></FromUserName>' +
-        '<CreateTime>' + parseInt(new Date().valueOf() / 1000) + '</CreateTime>' +
-        '<MsgType><![CDATA[text]]></MsgType>' +
-        '<Content><![CDATA['+data.content+']]></Content>' +
-        '</xml>';
+    if(data.msgtype=='text') {
+        var resMsg = '<xml>' +
+            '<ToUserName><![CDATA[' + data.fromusername + ']]></ToUserName>' +
+            '<FromUserName><![CDATA[' + data.tousername + ']]></FromUserName>' +
+            '<CreateTime>' + parseInt(new Date().valueOf() / 1000) + '</CreateTime>' +
+            '<MsgType><![CDATA[text]]></MsgType>' +
+            '<Content><![CDATA[' + data.content + ']]></Content>' +
+            '</xml>';
+    }
+
+    if(data.event=='subscribe' && data.msgType=='event'){
+        var resMsg = '<xml>' +
+            '<ToUserName><![CDATA[' + data.fromusername + ']]></ToUserName>' +
+            '<FromUserName><![CDATA[' + data.tousername + ']]></FromUserName>' +
+            '<CreateTime>' + parseInt(new Date().valueOf() / 1000) + '</CreateTime>' +
+            '<MsgType><![CDATA[text]]></MsgType>' +
+            '<Content>欢迎关注香满苑蛋糕屋，这里有最新鲜最美味的各种糕点~~</Content>' +
+            '</xml>';
+
+    }
+
     console.log('reqData:',data,'resData:',resMsg);
     res.end(resMsg);
 });
