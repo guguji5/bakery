@@ -48,7 +48,7 @@ router.post('/', function (req, res) {
         '<MsgType><![CDATA[text]]></MsgType>' +
         '<Content><![CDATA['+data.content+']]></Content>' +
         '</xml>';
-    console.log(resMsg);
+    console.log('reqData:',data,'resData:',resMsg);
     res.end(resMsg);
 });
 
