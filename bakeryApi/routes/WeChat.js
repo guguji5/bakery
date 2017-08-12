@@ -51,6 +51,16 @@ router.post('/', function (req, res) {
             '</xml>';
     }
 
+    if(data.msgtype=='text' &&( data.content=='666' || data.content ==66)) {
+        var resMsg = '<xml>' +
+            '<ToUserName><![CDATA[' + data.fromusername + ']]></ToUserName>' +
+            '<FromUserName><![CDATA[' + data.tousername + ']]></FromUserName>' +
+            '<CreateTime>' + parseInt(new Date().valueOf() / 1000) + '</CreateTime>' +
+            '<MsgType><![CDATA[text]]></MsgType>' +
+            '<Content>www.guguji.top</Content>' +
+            '</xml>';
+    }
+
     if(data.event=='subscribe' && data.msgType=='event'){
         var resMsg = '<xml>' +
             '<ToUserName><![CDATA[' + data.fromusername + ']]></ToUserName>' +
