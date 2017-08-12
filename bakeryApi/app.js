@@ -42,8 +42,12 @@ app.use('/cart',require('./routes/cart'))
 // 新增订单
 app.use('/order',require('./routes/order'))
 
-// 新增订单
+// 个人中心
 app.use('/about',require('./routes/about'))
+
+// 微信接口
+app.use('/interface',require('./routes/interface'))
+
 
 //test接口
 app.get('/test', function (req, res) {
