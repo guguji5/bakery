@@ -55,7 +55,8 @@ app.get('/test', function (req, res) {
 });
 
 
-const port = process.env.PORT || 443
+const port = process.env.PORT || 80
+//linux 必须通过sudo才能启动
 
 app.listen(port, () => {
   console.log(`server running @${port}`)
