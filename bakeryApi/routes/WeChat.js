@@ -61,7 +61,7 @@ router.post('/', function (req, res) {
             '</xml>';
     }
 
-    if(data.event=='subscribe' && data.msgType=='event'){
+    if(data.event=='subscribe' && data.msgtype=='event'){
         var resMsg = '<xml>' +
             '<ToUserName><![CDATA[' + data.fromusername + ']]></ToUserName>' +
             '<FromUserName><![CDATA[' + data.tousername + ']]></FromUserName>' +
