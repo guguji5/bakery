@@ -231,6 +231,7 @@
 
 <script>
     import {addDelivery,delivery,delDelivery,createOrder,updateDelivery} from '../service';
+    import { Toast} from 'mint-ui';
     export default {
         name: 'pay',
         data () {
@@ -266,7 +267,7 @@
                         }
                     })
                 } else {
-                    alert('带红色星号的都为必填')
+                    Toast('带红色星号的都为必填')
                 }
 
 
@@ -282,7 +283,7 @@
                             }
                         })
                     } else {
-                        alert('带红色星号的都为必填')
+                        Toast('带红色星号的都为必填')
                     }
                 }else{
                     var that = this;
@@ -295,7 +296,7 @@
                             }
                         })
                     } else {
-                        alert('带红色星号的都为必填')
+                        Toast('带红色星号的都为必填')
                     }
                 }
 
@@ -359,7 +360,7 @@
                 data.delivery=this.delivery;
                 createOrder(data).then(function (res) {
                     console.log(res);
-                    alert('购买成功，请等待收货')
+                    Toast('购买成功，请等待收货')
                 })
             }
         },

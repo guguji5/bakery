@@ -120,15 +120,10 @@
 <script>
     import Vue from 'vue'
     import { productDetail } from '../service';
-    import { MessageBox } from 'mint-ui';
-
-    import { Navbar, TabItem } from 'mint-ui';
+    import { MessageBox,Toast,Navbar, TabItem, TabContainer, TabContainerItem} from 'mint-ui';
 
     Vue.component(Navbar.name, Navbar);
     Vue.component(TabItem.name, TabItem);
-
-    import { TabContainer, TabContainerItem } from 'mint-ui';
-
     Vue.component(TabContainer.name, TabContainer);
     Vue.component(TabContainerItem.name, TabContainerItem);
 
@@ -152,7 +147,7 @@
         methods:{
             message(){
                 if(this.sizeSelect==10000){
-                    alert('请先选择产品规格')
+                    Toast('请先选择产品规格');
                     return false;
                 }
                 if(!this.buyNow){

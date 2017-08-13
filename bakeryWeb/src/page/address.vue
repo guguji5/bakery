@@ -39,6 +39,7 @@
 
 <script>
     import {delivery,delDelivery} from '../service';
+    import { Toast} from 'mint-ui';
     export default {
         name: 'address',
         data () {
@@ -54,7 +55,7 @@
                 var that=this;
                 delDelivery(id).then(function (res) {
                     if(res.data.isDel){
-                        alert('删除成功')
+                        Toast('删除成功')
                         //再次请求 dilivery
                         that.getDelivery()
                     };

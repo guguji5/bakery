@@ -47,6 +47,7 @@
 
 <script>
     import {delivery,delDelivery,addDelivery,updateDelivery} from '../service';
+    import { Toast} from 'mint-ui';
     export default {
         name: 'addressDetail',
         data () {
@@ -72,12 +73,12 @@
                         that.delivery.openid = that.$store.state.fakeData.openid;
                         updateDelivery(that.delivery).then(function (res) {
                             if (res.data.nModified>0 && res.data.ok==1) {
-                                alert('更新收货信息成功')
+                                Toast('更新收货信息成功')
                                 that.$router.push({ name: 'address'})
                             }
                         })
                     } else {
-                        alert('带红色星号的都为必填')
+                        Toast('带红色星号的都为必填')
                     }
                 }else{
                     var that = this;
@@ -85,12 +86,12 @@
                         that.delivery.openid = that.$store.state.fakeData.openid;
                         addDelivery(that.delivery).then(function (res) {
                             if (res.data.id) {
-                                alert('新增收货信息成功')
+                                Toast('新增收货信息成功')
                                 that.$router.push({ name: 'address'})
                             }
                         })
                     } else {
-                        alert('带红色星号的都为必填')
+                        Toast('带红色星号的都为必填')
                     }
                 }
             }
@@ -111,7 +112,7 @@
                             }
                         })
                     }else{
-                        alert('您还未维护收货地址信息')
+                        Toast('您还未维护收货地址信息')
                     }
                 })
             }

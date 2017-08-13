@@ -51,7 +51,8 @@
 </template>
 
 <script>
-    import {cartInfo} from '../service'
+    import {cartInfo} from '../service';
+    import { Toast} from 'mint-ui';
     export default {
         name: 'cart',
         data () {
@@ -82,7 +83,7 @@
                     localStorage.setItem('cart',JSON.stringify(cart));
                     that.calcAmount()
                 }else{
-                    alert('请先勾选一条购物车记录')
+                    Toast('请先勾选一条购物车记录')
                 }
             },
             remove(obj){
@@ -130,7 +131,7 @@
 //                    带参跳转
                     this.$router.push({ name: 'pay', params: carts})
                 }else{
-                    alert('请勾选至少一件商品')
+                    Toast('请勾选至少一件商品')
                 }
             }
         },
