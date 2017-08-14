@@ -57,11 +57,11 @@ let cartInfo = data => axios.post('/cart/info',data)
 //创建订单
 let createOrder = data => axios.put('/order/insert',data)
 //查询订单
-let queryOrder= (status,period) =>axios.get('/order/list/'+status+'/'+period);
+let queryOrder= (status,period,userId) =>axios.get('/order/list/'+status+'/'+period+'/'+userId);
 //根据id查询订单
 let queryOrderById= id => axios.get('/order/'+id)
 //查看有多少成功订单和未成功订单
-let about =() => axios.get('/about')
+let about = userId => axios.get('/about/'+userId);
 
 export {product,prodType,type,productDetail,isUser,insertUser,addDelivery,delivery,delDelivery,
     cartInfo,createOrder,queryOrder,queryOrderById,updateDelivery,about};

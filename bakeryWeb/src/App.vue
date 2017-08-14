@@ -1,7 +1,7 @@
 <template>
   <div id="app" style="height:100%">
       <mt-spinner type="snake" color="rgb(100, 100, 100)" :class="{loading:isloading}" style="display: none;"></mt-spinner>
-    <router-view></router-view>
+    <router-view class="wrap"></router-view>
     <foot></foot>
     <div id="z-z" :class="{block:isloading}"></div>
 
@@ -30,7 +30,10 @@ export default {
       foot
   },
   mounted(){
-
+      var that = this;
+      document.addEventListener('click',function (e) {
+          that.$store.commit('footListFalse')
+      })
   }
 }
 </script>

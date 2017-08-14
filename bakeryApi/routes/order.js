@@ -8,7 +8,7 @@ var ObjectId = require('mongodb').ObjectID;
 var async = require("async");
 
 //获取订单信息
-router.get("/list/:status/:period", (req, res) => {
+router.get("/list/:status/:period/:userId", (req, res) => {
 
     // status 0 1 2 分别代表  未完成 已完成 全部
     // period 0 1 2 分别代表  近三个月   近一年   全部
@@ -107,6 +107,7 @@ router.put("/insert", (req, res) => {
           "remark": req.body.remark,
           "goods":  req.body.goods,
           "delivery": req.body.delivery,
+          "userId": req.body.userId,
           "create_time":date(),
           "status":false               //默认是未完成
       }

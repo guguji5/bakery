@@ -11,13 +11,13 @@
         <section class="hy-zx">
             <ul class="ui-tiled bg-fff nav">
                 <li @click="jump(0)">
-                    <b>{{complete}}</b>
+                    <b>{{unComplete}}</b>
                     <div>
                         未完成
                     </div>
                 </li>
                 <li @click="jump(1)">
-                    <b>{{unComplete}}</b>
+                    <b>{{complete}}</b>
                     <div>
                         已完成
                     </div>
@@ -64,10 +64,12 @@
         },
         mounted(){
             let that=this;
-            about().then(function (res) {
+            let userId = that.$store.state.fakeData.openid;
+
+            about(userId).then(function (res) {
                 if(res!==null){
-                    that.complete=res.data.complete;
-                    that.unComplete=res.data.unComplete;
+                    that.complete=res.data.complete ? res.data.complete : 0;
+                    that.unComplete=res.data.unComplete ? res.data.unComplete : 0;
                 }
             })
         }

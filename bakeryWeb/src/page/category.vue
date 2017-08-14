@@ -119,7 +119,15 @@
                 that.typeList=res.data;
             }).catch(function (err) {
                 console.log(err);
+            });
+            //点击content区域关闭头部的菜单
+            var dom = document.querySelector('.cp-list');
+            dom.addEventListener('click',function (e) {
+                that.showList=false;
+                that.showOrder=false;
             })
+
+
         }
     }
 </script>

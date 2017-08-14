@@ -23,7 +23,7 @@
             <div class="bd">
 
               
-                <ul class="ui-list ui-list-one p10 ui-border-tb mb10" v-for="item in goods">
+                <ul class="ui-list ui-list-one p10 ui-border-tb mb10" v-show="goods.length>0" v-for="item in goods">
                     <li class="t ui-border-b">订单号：{{item._id}}</li>
                     <li class="ui-border-b link" v-for="good in item.goods">
                         <div class="ui-list-thumb">
@@ -42,7 +42,7 @@
                     </li>
                 </ul>
 
-
+                <div v-show="goods.length==0" style="text-align: center;border-top:1px solid #F1F1F1;padding: 15px 0px;">无记录</div>
             </div>
         </section>
     </div>
@@ -72,7 +72,8 @@
             },
             getData(status,period){
                 let that =this;
-                queryOrder(status,period).then(function (res) {
+                let userId=that.$store.state.fakeData.openid;
+                queryOrder(status,period,userId).then(function (res) {
                     that.goods=res.data;
                     that.goods.forEach(function (value,key) {
                         let amount=0;
@@ -86,7 +87,8 @@
         },
         mounted(){
             var status=this.$route.params.status;//0是显示未完成的，1是显示已完成的
-            this.getData(status,2);
+            var userId=this.$store.state.fakeData.openid;
+            this.getData(status,2,userId);
         },
         update(){
 
@@ -99,8 +101,9 @@
 //            console.log(to,from)
             next();
             if(to.path!=from.path){
+                var userId=this.$store.state.fakeData.openid;
                 var status=to.params.status;//0是显示未完成的，1是显示已完成的
-                this.getData(status,2);
+                this.getData(status,2,userId);
             }
         }
     }

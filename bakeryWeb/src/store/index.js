@@ -20,7 +20,11 @@ const store = new Vuex.Store({
             "remark": "",
             "groupid": 0,
             "tagid_list":[128,2]
-        }
+        },
+        isShowFootList:false, //是否显示foot的list
+        isShowTopList:false,  //category 下拉显示
+        isShowTopOrder:false  //category 排序
+
     },
     mutations: {
         loadChange(state){
@@ -31,6 +35,12 @@ const store = new Vuex.Store({
         },
         loadFalse(state){
             state.isloading=false;
+        },
+        footListFalse(state){
+            state.isShowFootList=false;
+        },
+        footListChange(state){
+            state.isShowFootList=!state.isShowFootList;
         }
 
     },

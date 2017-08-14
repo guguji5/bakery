@@ -6,7 +6,7 @@
           <router-link to="/">主页</router-link>
         </li>
         <li class="ui-col ui-txt-c tc" style="cursor: pointer;">
-          <a href="javascript:;" @click="isListShow=!isListShow"><i></i>产品</a>
+          <a href="javascript:;" @click="listChange($event)"><i></i>产品</a>
           <div class="pfk" :style="styleObject">
             <ul>
               <a href=""><li>经典系列</li></a>
@@ -38,12 +38,23 @@ export default {
   name: 'foot',
   data () {
     return {
-      isListShow:false,
     }
   },
   computed : {
       styleObject(){
           return {bottom: this.isListShow ? '54px' : '-9999px'}
+      },
+      isListShow(){
+          return this.$store.state.isShowFootList;
+      }
+  },
+  mounted(){
+
+  },
+  methods:{
+      listChange(e){
+          e.cancelBubble = true;
+          this.$store.commit('footListChange')
       }
   }
 }

@@ -9,13 +9,18 @@ var async = require("async");
 
 //获取 有多少是已完成订单，有多少是未完成订单
 //
-router.get("/", (req, res) => {
+router.get("/:userId", (req, res) => {
 
-    res.type('application/json'); 
+    var userId = req.params.userId || '';
+    res.type('application/json');
 
     var findAbout = function(db, callback) {
         var result={};
         var cursor=db.collection('order').aggregate([{
+                        $match:{
+                            userId:userId
+                        }
+                    },{
                       $group:{
                               _id:"$status",
                               count:{$sum:1}

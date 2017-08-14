@@ -143,7 +143,7 @@
         <ul class="p10 ui-border-b">
             <li class="mb15 ui-form-textarea ui-border-tb-11 radius5">
                 <label>留&nbsp;&nbsp;&nbsp;&nbsp;言</label>
-                <textarea placeholder="100汉字以内" maxlength="200"  class="ui-textarea" style="height:45px;" v-model="remark"></textarea>
+                <textarea placeholder="几点送货上门方便？" maxlength="200"  class="ui-textarea" style="height:45px;" v-model="remark"></textarea>
             </li>
             <li>运费 <span class="r shipping_fee">{{fee | currency}}</span></li>
             <li class=" mb10"><!--<a href="javascript:void(0);" class="c-999">不包含商品</a>--></li>
@@ -358,6 +358,7 @@
                 data.fee=this.fee;
                 data.goods=this.goods;
                 data.delivery=this.delivery;
+                data.userId=this.$store.state.fakeData.openid;
                 createOrder(data).then(function (res) {
                     console.log(res);
                     Toast('购买成功，请等待收货')

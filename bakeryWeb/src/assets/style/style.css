@@ -1,7 +1,7 @@
 @charset "utf-8";
 
-
 /* 首页*/
+.wrap{height:100%}
 .city-list{ display:none;overflow-y:scroll}
 .city-list.block{ display:block}
 .city-list #header{ background:#fff; height:50px; overflow:hidden}
@@ -89,7 +89,7 @@ li.w-2 .ui-select-group .ui-select select{ font-size:13px; color:#959595;}
 .dd-ym .zffs .btn .btn-1{ display:inline-block; margin-right:10px; background:#ffff00; padding:2px 10px;}
 .dd-ym .zffs .btn .btn-2{ display:inline-block; margin-right:10px; background:#ededed; padding:2px 10px;}
 /*列表页*/
-.lb-y{border-bottom:56px solid transparent; overflow:hidden; min-height:350px;}
+.lb-y{border-bottom:56px solid transparent; /*overflow:hidden;*/ min-height:350px;}
 .lb-y .nav{padding:10px 0;border-bottom:1px solid #ccc;}
 .lb-y .nav li:after{content: ""; display:inline-block;margin-left:5px; width: 12px; height: 7px; background-position: -180px -13px; background: url(../images/ico_jt.png) no-repeat 0 -7px; background-size: 12px;}
 .lb-y .cp-list{padding:0 10px; padding-top:10px}
@@ -171,7 +171,7 @@ li.w-2 .ui-select-group .ui-select select{ font-size:13px; color:#959595;}
 .sc-j .btn a{display:inline-block; padding:2px 3px; border:1px solid #d2d2d2; margin-left:5px}
 .sc-j .j-g{display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-pack: center; -webkit-box-align: center;}
 /*查看订单*/
-.ck-dd{border-bottom:56px solid transparent; overflow:hidden}
+.ck-dd{border-bottom:56px solid transparent; overflow:hidden;height:100%}
 .ck-dd .ms{-webkit-box-flex: 1; -webkit-box-align: start;}
 .ck-dd .ui-list-one .ui-list-info{-webkit-box-align: start;}
 .ck-dd .ui-list-one .link:after{/*background: url(../images/ico_yjt.png) no-repeat;*/ -webkit-background-size: 12px; content: ""; display: block; width: 12px; height: 12px; position: absolute; right: 100px; top: 50%; margin-top: -6px;}
