@@ -82,8 +82,49 @@ router.get("/:id", (req, res) => {
              });
 
               
-          }]
-      }, function(err, results) {
+          }],
+           get_assess:function (cb) {
+              var result=[];
+              var cursor=db.collection('order').find({
+                  status:true,
+                  "goods.productId":id
+              });
+              cursor.each(function(err, doc) {
+                  d.assert.equal(err, null);
+                  if (doc != null) {
+                      result.push({
+                          userId:doc.userId,
+                          content:doc.assessment,
+                          createTime:doc.create_time
+                      });
+                  } else {
+                      cb(null,result);
+                  }
+              });
+          },
+           get_assess_info:['get_assess',function (results,cb) {
+               var result=[];
+               var userArr = results.get_assess;
+               if(Object.prototype.toString.call(userArr).indexOf('Array')>-1 && userArr.length>0){
+                   var openids = userArr.map(function (value) {
+                       return value.userId;
+                   })
+                    var cursor =db.collection('user').find({"openid":{$in:openids}})
+                   cursor.each(function(err, doc) {
+                       d.assert.equal(err, null);
+                       if (doc != null) {
+                           result.push(doc)
+                       } else {
+                           cb(null,result);
+                       }
+                   });
+
+               }else{
+                   cb(null);
+               }
+
+           }]
+       }, function(err, results) {
           // console.log('err = ', err);
           // console.log('results = ', results);
 
@@ -91,8 +132,22 @@ router.get("/:id", (req, res) => {
             callback(err);
           }else{
             var temp=results.get_product;
+            var assess=results.get_assess;
+            //根据userId--> 用户表里的openId 去把它的基本信息拉出来
+            assess.forEach(function (value,key) {
+                results.get_assess_info.forEach(function (v,k) {
+                    if(value.userId == v.openid){
+                        value.city=v.city;
+                        value.headimgurl=v.headimgurl;
+                        value.nickname=v.nickname;
+                        value.province=v.province;
+                    }
+                })
+            })
+            
             temp.sizeContent=results.get_size;
             temp.tags=results.get_tags;
+            temp.assess=assess;
             Object.assign(temp,results.get_prod)
             callback(temp)
           }

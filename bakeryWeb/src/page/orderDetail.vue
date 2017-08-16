@@ -41,12 +41,12 @@
             <ul class="ui-list ui-list-one p10 ui-border-tb mb10">
                 <li class="t">
                     <div class="ui-flex-pack-end btn" style="padding:0px;margin-bottom:45px">
-                        <a href="" class="radius5" v-show="data.status">再次购买</a>
-                        <a href="" class="radius5" v-show="!data.status">去付款</a>
+                        <a class="radius5" v-show="data.status">再次购买</a>
+                        <a class="radius5" v-show="!data.status">去付款</a>
 
-                        <a href="" class="radius5" v-show="data.status">添加评价</a>
-                        <a href="" class="radius5" v-show="!data.status">取消订单</a>
-                        <!--<a href="" class="radius5" style="margin-top: 10px;">退换货申请</a>-->
+                        <a class="radius5" v-show="data.status && !data.assessment" @click="jump">添加评价</a>
+                        <a class="radius5" v-show="!data.status">取消订单</a>
+                        <!--<a  class="radius5" style="margin-top: 10px;">退换货申请</a>-->
 
                     </div>
                 </li>
@@ -70,7 +70,9 @@
 
         },
         methods:{
-
+            jump(){
+                this.$router.push({ name: 'assessment', params: { id: this.$route.params.id}})
+            },
         },
         mounted(){
             let that=this;

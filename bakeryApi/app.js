@@ -60,6 +60,8 @@ app.use('/about',require('./routes/about'))
 // 微信接口
 app.use('/WeChat',require('./routes/WeChat'))
 
+//评论接口
+app.use('/assessment',require('./routes/assessment'))
 
 //test接口
 app.get('/test', function (req, res) {

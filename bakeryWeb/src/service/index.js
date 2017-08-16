@@ -62,6 +62,10 @@ let queryOrder= (status,period,userId) =>axios.get('/order/list/'+status+'/'+per
 let queryOrderById= id => axios.get('/order/'+id)
 //查看有多少成功订单和未成功订单
 let about = userId => axios.get('/about/'+userId);
+//添加评论
+let addAssess = data =>axios.put('/assessment/insert',data);
+
+
 
 export {product,prodType,type,productDetail,isUser,insertUser,addDelivery,delivery,delDelivery,
-    cartInfo,createOrder,queryOrder,queryOrderById,updateDelivery,about};
+    cartInfo,createOrder,queryOrder,queryOrderById,updateDelivery,about,addAssess};

@@ -10,6 +10,7 @@ import order from '@/page/order';
 import orderDetail from '@/page/orderDetail';
 import address from '@/page/address';
 import addressDetail from '@/page/addressDetail';
+import assessment from '@/page/assessment';
 
 Vue.use(Router)
 
@@ -54,6 +55,11 @@ export default new Router({
       path: '/orderDetail/:id',   //
       name: 'orderDetail',
       component: orderDetail
+    },
+    {
+      path: '/assessment/:id',   //
+      name: 'assessment',
+      component: assessment
     },
     {
         path: '/address',   //

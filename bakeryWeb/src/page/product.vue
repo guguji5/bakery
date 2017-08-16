@@ -53,18 +53,20 @@
             </mt-tab-container-item>
             <mt-tab-container-item id="3">
                 <ul class="list">
-                    <li class="item">
+                    <li class="item" v-for="item in data.assess">
                         <div class="info">
-                            <div class="author">
-                                <span class="nike">邓***1</span>
-                                <img class="vip" src="../assets/images/3.png" alt="天猫T3达人">
-                            </div>
-                            <time>2017-07-15 </time>
+                            <!--<div class="author">-->
+                            <img class="vip" :src="item.headimgurl">
+                            <span class="nike">{{item.nickname}}</span>
+                            <!--</div>-->
+                            <time>{{item.createTime | time}}</time>
                         </div>
-                        <blockquote>孩子的生日，我看了很久才买的这款，孩子喜欢水果，送的很快就到了。打开一看真的很好，水果丰富，吃起来也很新鲜，看着有食欲，这个价格真的超划算，很漂亮，款式精致，蛋糕非常好吃，奶油淡淡的甜甜的，口感绵密入口即化，孩子很喜欢吃她很高兴，作为父母看到孩子高兴就满足了，辛苦快递小哥哥，还特地关照放冰箱冷藏室，下次还会考虑试试款式。点个赞！ 服务态度非常热情！</blockquote>
-                        <ul class="pics">
-                            <li><img src="../assets/images/1.jpg"></li>
-                        </ul>
+                        <blockquote>
+                            {{item.content}}
+                        </blockquote>
+                        <!--<ul class="pics"> 这里是用户上传图片-->
+                            <!--<li><img src="../assets/images/1.jpg"></li>-->
+                        <!--</ul>-->
                     </li>
                 </ul>
             </mt-tab-container-item>
@@ -239,6 +241,8 @@
     .list .info {
         overflow: hidden;
         margin-bottom: .8em;
+        height:40px;
+        line-height:40px;
     }
     .list blockquote {
         font-size: 14px;
@@ -285,11 +289,11 @@
     .list .info .author,.list .info li, .list .other li, .list .sku li {
         float: left;
     }
-    list .info .nike, .list .info .vip {
-        vertical-align: sub;
+    .list .info .nike, .list .info .vip {
+        vertical-align: middle;
         width:auto;
         display: inline;
-
+        height:40px;
     }
     .list .info time {
         float: right;
