@@ -66,8 +66,7 @@ router.post('/', function (req, res) {
             '<FromUserName><![CDATA[' + data.tousername + ']]></FromUserName>' +
             '<CreateTime>' + parseInt(new Date().valueOf() / 1000) + '</CreateTime>' +
             '<MsgType><![CDATA[text]]></MsgType>' +
-            '<Content><![CDATA[OAuth2.0网页授权演示<a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx22e00a74ae666fe7&redirect_uri=http://test.xq0213.top&response_type=
-        code&scope=snsapi_userinfo#wechat_redirect">点击这里体验</a>]]></Content>'+
+            '<Content><![CDATA[OAuth2.0网页授权演示<a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx22e00a74ae666fe7&redirect_uri=http://test.xq0213.top&response_type=code&scope=snsapi_userinfo#wechat_redirect">点击这里体验</a>]]></Content>'+
             '</xml>';
     }
 
