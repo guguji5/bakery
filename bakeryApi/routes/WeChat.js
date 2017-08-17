@@ -66,9 +66,7 @@ router.post('/', function (req, res) {
             '<FromUserName><![CDATA[' + data.tousername + ']]></FromUserName>' +
             '<CreateTime>' + parseInt(new Date().valueOf() / 1000) + '</CreateTime>' +
             '<MsgType><![CDATA[text]]></MsgType>' +
-            '<Content> OAuth2.0网页授权演示</Content>' +
-            '<a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8888888888888888&redirect_uri=http://mascot.duapp.com/oauth2.php&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect">点击这里体验</a>' +
-            '技术支持 方倍工作室 ' +
+            '<Content><![CDATA[OAuth2.0网页授权演示<a href="https://www.baidu.com>点击这里体验</a>]]></Content>'+
             '</xml>';
     }
 
