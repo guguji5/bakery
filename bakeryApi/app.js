@@ -30,6 +30,12 @@ app.all('*', function (req, res, next) {
 //   res.header("Content-Type", "application/json;charset=utf-8")
   next()
 })
+app.get(['*.js', '*.css', '*.jpg','*.png'],function (req,res,next) {
+    console.log(req.originalUrl)
+    res.header('Cache-Control', 'public, max-age=31557600');
+    res.header("Expires", new Date(Date.now() + 2592000000).toUTCString());
+    next();
+})
 app.set('views', path.join(__dirname, 'view'));
 app.set('view engine', 'jade');
 app.use(bodyParser.urlencoded({ extended: false }));
