@@ -51,13 +51,22 @@ router.post('/', function (req, res) {
             '</xml>';
     }
 
-    if(data.msgtype=='text' &&( data.content=='666' || data.content ==66)) {
+    if(data.msgtype=='text' &&( data.content=='66' || data.content ==66)) {
         var resMsg = '<xml>' +
             '<ToUserName><![CDATA[' + data.fromusername + ']]></ToUserName>' +
             '<FromUserName><![CDATA[' + data.tousername + ']]></FromUserName>' +
             '<CreateTime>' + parseInt(new Date().valueOf() / 1000) + '</CreateTime>' +
             '<MsgType><![CDATA[text]]></MsgType>' +
             '<Content>guguji.top</Content>' +
+            '</xml>';
+    }
+    if(data.msgtype=='text' && data.content=='link') {
+        var resMsg = '<xml>' +
+            '<ToUserName><![CDATA[' + data.fromusername + ']]></ToUserName>' +
+            '<FromUserName><![CDATA[' + data.tousername + ']]></FromUserName>' +
+            '<CreateTime>' + parseInt(new Date().valueOf() / 1000) + '</CreateTime>' +
+            '<MsgType><![CDATA[text]]></MsgType>' +
+            '<Content> OAuth2.0网页授权演示<a href="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8888888888888888&redirect_uri=http://mascot.duapp.com/oauth2.php&response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect">点击这里体验</a>技术支持 方倍工作室 </Content>' +
             '</xml>';
     }
 
@@ -71,6 +80,8 @@ router.post('/', function (req, res) {
             '</xml>';
 
     }
+
+
 
     console.log('reqData:',data,'resData:',resMsg);
     res.end(resMsg);
