@@ -43,7 +43,7 @@
 
 <script>
     import Vue from 'vue'
-    import {isUser,insertUser} from '../service'
+    import {isUser,insertUser,accessToken} from '../service'
     import { Swipe, SwipeItem } from 'mint-ui';
 
     Vue.component(Swipe.name, Swipe);
@@ -71,6 +71,7 @@
             },
         },
         mounted(){
+            console.log(this.$route.query.code);
             let that=this;
             //判断当前用户是否在user表中，如果没有则插入一条
             isUser(that.openid).then(function (res) {
@@ -83,7 +84,11 @@
                     })
                 }
             })
-
+            if(that.$route.query.code){
+                accessToken(that.$route.query.code).then(function (res) {
+                    console.log(res);
+                })
+            }
         }
     }
 </script>

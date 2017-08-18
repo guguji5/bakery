@@ -87,6 +87,27 @@ router.post('/', function (req, res) {
     res.end(resMsg);
 });
 
+router.get('/getAccessToken',function (req,res) {
+    var code=req.query.code;
+    if(code){
+        request({
+            url: 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx22e00a74ae666fe7&secret=bf2e9bfa3da839d38f86dc0ce1cf9cfe&code='+code+'&grant_type=authorization_code',
+            method: "get",
+            json: true
+        }, function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                console.log(body.body);
+                res.json(body.body)
+            } else {
+                console.log(response.statusCode, error, body);
+                res.send(error);
+            }
+        })
+    }else{
+        console.log(code);
+        res.send('木有带参数，肯定不是从微信进来的吧！')
+    }
+})
 
 
 module.exports = router
