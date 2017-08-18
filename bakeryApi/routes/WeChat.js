@@ -104,7 +104,7 @@ router.get('/getAccessToken',function (req,res) {
                 setAccessToken(body.openid,body.access_token);
                 //拉取用户基本信息
                 request({
-                    url: 'https://api.weixin.qq.com/sns/userinfo?'+body.access_token+'=ACCESS_TOKEN&openid='+body.openid+'&lang=zh_CN',
+                    url:"https://api.weixin.qq.com/sns/userinfo?access_token="+body.access_token+"&openid="+body.openid+"&lang=zh_CN",
                     method: "get",
                     json: true
                 }, function (error, response, body) {
