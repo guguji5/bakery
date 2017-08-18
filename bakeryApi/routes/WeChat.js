@@ -4,10 +4,10 @@ const crypto =  require('crypto'); //引入加密模块
 const d = require('../dbconf/')
 const date = require('../dbconf/date');
 const request = require('request');
-const uid = require('../dbconf/uid')
 const log = require('../dbconf/log')
-var ObjectId = require('mongodb').ObjectID;
-var async = require("async");
+const ObjectId = require('mongodb').ObjectID;
+const async = require("async");
+const setAccessToken = require('../dbconf/access_token')
 
 router.get("/", (req, res) => {
     //1.获取微信服务器Get请求的参数 signature、timestamp、nonce、echostr
@@ -91,16 +91,33 @@ router.post('/', function (req, res) {
 router.get('/getAccessToken',function (req,res) {
     var code=req.query.code;
     if(code){
+        //通过code去获取access_token
         request({
             url: 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx22e00a74ae666fe7&secret=bf2e9bfa3da839d38f86dc0ce1cf9cfe&code='+code+'&grant_type=authorization_code',
             method: "get",
             json: true
         }, function (error, response, body) {
-	     console.log('body',body);
-	      console.log('response',response.statusCode);
+	     console.log("access_token's body",body);
+	      console.log("access_token's response",response.statusCode);
             if (!error && response.statusCode == 200) {
-                console.log(body.body);
-                res.json(body.body)
+                console.log(body);
+                setAccessToken(body.openid,body.access_token);
+                //拉取用户基本信息
+                request({
+                    url: 'https://api.weixin.qq.com/sns/userinfo?'+body.access_token+'=ACCESS_TOKEN&openid='+body.openid+'&lang=zh_CN',
+                    method: "get",
+                    json: true
+                }, function (error, response, body) {
+                        console.log("info's body",body)
+                        console.log("info's response",response.statusCode)
+                    if (!error && response.statusCode == 200) {
+                        res.json(body)
+                    }else{
+                        console.log(response.statusCode, error, body);
+                        res.send(error);
+                    }
+                })
+
             } else {
                 console.log(response.statusCode, error, body);
                 res.send(error);

@@ -21,7 +21,6 @@ router.get("/:openid", (req, res) => {
                   isThere:false
                   })
             }else{
-              console.log('date() is '+date())
               if(date()-res.subscribe_time>2592000){
                 // 用户存在但是，信息超过一个月，更新信息
                 callback({
