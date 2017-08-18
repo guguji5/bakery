@@ -96,6 +96,8 @@ router.get('/getAccessToken',function (req,res) {
             method: "get",
             json: true
         }, function (error, response, body) {
+	     console.log('body',body);
+	      console.log('response',response.statusCode);
             if (!error && response.statusCode == 200) {
                 console.log(body.body);
                 res.json(body.body)
