@@ -71,7 +71,16 @@
             },
         },
         mounted(){
-            console.log(this.$route.query.code);
+            var code;
+            var param=window.location.search;
+            param=param.substring(1,param.length);
+            var paramArr=param.split('&');
+            paramArr.forEach(function (value,key) {
+                if(value.indexOf('code')==0){
+                    code=value.substr(5);
+                }
+            })
+
             let that=this;
             //判断当前用户是否在user表中，如果没有则插入一条
             isUser(that.openid).then(function (res) {
@@ -84,10 +93,12 @@
                     })
                 }
             })
-            if(that.$route.query.code){
-                accessToken(that.$route.query.code).then(function (res) {
+            if(code){
+                accessToken(code).then(function (res) {
                     console.log(res);
                 })
+            }else{
+                console.log('木有code')
             }
         }
     }
