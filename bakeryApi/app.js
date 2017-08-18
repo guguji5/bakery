@@ -31,7 +31,7 @@ app.all('*', function (req, res, next) {
   next()
 })
 app.get(['*.js', '*.css', '*.jpg','*.png'],function (req,res,next) {
-    console.log(req.originalUrl)
+    // console.log(req.originalUrl)
     res.header('Cache-Control', 'public, max-age=31557600');
     res.header("Expires", new Date(Date.now() + 2592000000).toUTCString());
     next();
