@@ -98,9 +98,7 @@ router.get('/getAccessToken',function (req,res) {
             json: true
         }, function (error, response, body) {
 	     console.log("access_token's body",body);
-	      console.log("access_token's response",response.statusCode);
-            if (!error && response.statusCode == 200) {
-                console.log(body);
+            if (!body.errcode && response.statusCode == 200) {
                 setAccessToken(body.openid,body.access_token);
                 //拉取用户基本信息
                 request({
@@ -109,17 +107,16 @@ router.get('/getAccessToken',function (req,res) {
                     json: true
                 }, function (error, response, body) {
                         console.log("info's body",body)
-                        console.log("info's response",response.statusCode)
-                    if (!error && response.statusCode == 200) {
+                    if (!body.errcode && response.statusCode == 200) {
                         res.json(body)
                     }else{
-                        console.log(response.statusCode, error, body);
+                        console.log(error, body);
                         res.send(error);
                     }
                 })
 
             } else {
-                console.log(response.statusCode, error, body);
+                console.log(error, body);
                 res.send(error);
             }
         })

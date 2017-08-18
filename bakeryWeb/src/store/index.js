@@ -41,6 +41,9 @@ const store = new Vuex.Store({
         },
         footListChange(state){
             state.isShowFootList=!state.isShowFootList;
+        },
+        setUserInfo(state,data){
+            Object.assign(state.fakeData,data)
         }
 
     },

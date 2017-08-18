@@ -2,7 +2,7 @@
 const d = require('../dbconf/');
 let setAccssToken = (openid,token) => {
     var insertAccess = function (db, callback) {
-        db.collection('order').insert({
+        db.collection('access_token').insert({
             "createdAt": new Date(),
             "_id": openid,
             "access_token": token
