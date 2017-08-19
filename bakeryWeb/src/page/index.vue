@@ -85,19 +85,23 @@
 
             if(code){
                 accessToken(code).then(function (res) {
-                    console.log(res);
-                    that.$store.commit('setUserInfo',res.data)
-                    //判断当前用户是否在user表中，如果没有则插入一条
-                    isUser(that.openid).then(function (res) {
-                        if(res.data.isThere){
-                            console.log('此用户之前已登陆过本公众号')
-                        }else {
-                            //如果没登陆过，则插入用户表
-                            insertUser(that.fakeData).then(function (res) {
-                                console.log(res);
-                            })
-                        }
-                    })
+                    if(!res.data.errcode){
+                        that.$store.commit('setUserInfo',res.data)
+                        //判断当前用户是否在user表中，如果没有则插入一条
+                        isUser(that.openid).then(function (res) {
+                            if(res.data.isThere){
+                                console.log('此用户之前已登陆过本公众号')
+                            }else {
+                                //如果没登陆过，则插入用户表
+                                insertUser(that.fakeData).then(function (res) {
+                                    console.log(res);
+                                })
+                            }
+                        })
+                    }else{
+                        console.log(res.data.errcode);
+                    }
+
 
                 })
             }else{

@@ -108,18 +108,18 @@ router.get('/getAccessToken',function (req,res) {
                     method: "get",
                     json: true
                 }, function (error, response, body) {
-                        console.log("info's body",body)
+                    console.log("info's body",body)
                     if (!body.errcode && response.statusCode == 200) {
                         res.json(body)
                     }else{
-                        console.log(error, body);
-                        res.send(error);
+                        console.log(body);
+                        res.send(body);
                     }
                 })
 
             } else {
-                console.log(error, body);
-                res.send(error);
+                console.log(body);
+                res.send(body);
             }
         })
     }else{
