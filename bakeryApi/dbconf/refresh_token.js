@@ -1,14 +1,14 @@
-// 存入access_token表
+// 存入refresh_token表
 const d = require('../dbconf/');
-let setAccssToken = (openid,token) => {
+let setRefreshToken = (openid,token) => {
     var insertAccess = function (db, callback) {
-        db.collection('access_token').save({
+        db.collection('refresh_token').save({
             "createdAt": new Date(),
             "_id": openid,
             "access_token": token
         }, function (err, result) {
             d.assert.equal(err, null);
-            console.log("access_token has inserted success");
+            console.log("refresh_token has inserted success");
             callback(result);
         });
     };
@@ -20,4 +20,4 @@ let setAccssToken = (openid,token) => {
         });
     })
 };
-module.exports=setAccssToken;
+module.exports=setRefreshToken;

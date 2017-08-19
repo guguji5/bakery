@@ -94,7 +94,7 @@
                         }else {
                             //如果没登陆过，则插入用户表
                             insertUser(that.fakeData).then(function (res) {
-                                console.log(res)
+                                console.log(res);
                             })
                         }
                     })

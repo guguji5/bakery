@@ -7,7 +7,8 @@ const request = require('request');
 const log = require('../dbconf/log')
 const ObjectId = require('mongodb').ObjectID;
 const async = require("async");
-const setAccessToken = require('../dbconf/access_token')
+const setAccessToken = require('../dbconf/access_token');
+const setRefreshToken = require('../dbconf/refresh_token');
 
 router.get("/", (req, res) => {
     //1.获取微信服务器Get请求的参数 signature、timestamp、nonce、echostr
@@ -100,6 +101,7 @@ router.get('/getAccessToken',function (req,res) {
 	     console.log("access_token's body",body);
             if (!body.errcode && response.statusCode == 200) {
                 setAccessToken(body.openid,body.access_token);
+                setRefreshToken(body.openid,body.refresh_token);
                 //拉取用户基本信息
                 request({
                     url:"https://api.weixin.qq.com/sns/userinfo?access_token="+body.access_token+"&openid="+body.openid+"&lang=zh_CN",
