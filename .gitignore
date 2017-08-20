@@ -15,3 +15,4 @@ bakeryWeb/.postcssrc.js
 bakeryWeb/README.md 
 bakeryApi/package-lock.json
 bakeryApi/npm-debug.log
+bakeryApi/dbconf/key.json
