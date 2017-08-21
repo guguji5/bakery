@@ -55,7 +55,7 @@ router.post("/info", (req, res) => {
             if(value.productId){
                 db.collection('product').findOne( {
                   "_id":new ObjectId(value.productId)
-                }, function(err, res) {
+                },{ name: 1, img_url: 1,price:1,prices:1,size:1}, function(err, res) {
                   d.assert.equal(err, null);
                   console.log("product infomation has found success");
                   results.push(res)

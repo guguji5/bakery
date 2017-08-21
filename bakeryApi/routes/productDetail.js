@@ -30,16 +30,16 @@ router.get("/:id", (req, res) => {
        // });
 
        async.auto({
-         get_prod: function(cb) {
-            var cursor =db.collection('product').findOne({"_id":o_id})
-            // 无论他找到与找不到，他都会有进入第一个回调
-             cursor.then(function(res){
-                if(res===null){
-                  cb('没有查询到id为'+id+'的记录')
-                }
-                cb(null,res);
-             })
-          },
+         // get_prod: function(cb) {
+         //    var cursor =db.collection('product').findOne({"_id":o_id})
+         //    // 无论他找到与找不到，他都会有进入第一个回调
+         //     cursor.then(function(res){
+         //        if(res===null){
+         //          cb('没有查询到id为'+id+'的记录')
+         //        }
+         //        cb(null,res);
+         //     })
+         //  },
           get_product: function(cb) {
             var cursor =db.collection('productDetail').findOne({"_id":o_id})
             // 无论他找到与找不到，他都会有进入第一个回调
@@ -148,7 +148,7 @@ router.get("/:id", (req, res) => {
             temp.sizeContent=results.get_size;
             temp.tags=results.get_tags;
             temp.assess=assess;
-            Object.assign(temp,results.get_prod)
+            // Object.assign(temp,results.get_prod)
             callback(temp)
           }
           

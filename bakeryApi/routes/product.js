@@ -6,7 +6,7 @@ router.get("/", (req, res) => {
     res.type('application/json'); 
     var result=[];
     var findProducts = function(db, callback) {
-       var cursor =db.collection('product').find( );
+       var cursor =db.collection('product').find({}).project({ name: 1, img_url: 1,price:1,prices:1,size:1});;
        cursor.each(function(err, doc) {
           d.assert.equal(err, null);
           if (doc != null) {
@@ -36,7 +36,7 @@ router.get("/:type", (req, res) => {
     if(!isNaN(type)){
         var result=[];
         var findProducts = function(db, callback) {
-           var cursor =db.collection('product').find({"type":type});
+           var cursor =db.collection('product').find({"type":type}).project({ name: 1, img_url: 1,price:1,prices:1});
            cursor.each(function(err, doc) {
               d.assert.equal(err, null);
               if (doc != null) {

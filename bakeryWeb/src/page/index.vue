@@ -3,8 +3,8 @@
         <header id="header-index">
             <div class="header_l"> <a class="logo" @click="jump"> 首页 </a> <span class="city">成安县 </span>    </div>
             <div class="header_r">
-                <!--登录后--><a @click="jump">咕咕鸡</a><!--登录后   可以简写-->
-                丨<a @click="jump">购物车</a>
+                <a @click="jump('user')">{{fakeData.nickname}}</a>
+                丨<a @click="jump('cart')">购物车</a>
             </div>
         </header>
         <!--头部-->
@@ -66,8 +66,9 @@
             }
         },
         methods:{
-            jump(){
-                this.$router.push({ name: 'category',})
+            jump(router){
+                router= router || 'category';
+                this.$router.push({ name: 'category'})
             },
         },
         mounted(){

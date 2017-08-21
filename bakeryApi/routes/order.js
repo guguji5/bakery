@@ -38,7 +38,7 @@ router.get("/list/:status/:period/:userId", (req, res) => {
 
     res.type('application/json'); 
 
-    console.log(params)
+    // console.log(params)
 
     var findOrder = function(db, callback) {
         var result=[];

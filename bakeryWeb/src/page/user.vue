@@ -2,7 +2,7 @@
     <div>
         <header id="header" style="background:#6BC4DF">
             <div class="header_l"> <a class="fh" href="javascript:history.back(-1)"> 返回</a>  </div>
-            <h1> 会员中心</h1>
+            <h1> {{nickname}}</h1>
             <div class="header_r">
 
             </div>
@@ -55,7 +55,9 @@
             }
         },
         computed:{
-
+            nickname(){
+                return this.$store.state.fakeData.nickname;
+            }
         },
         methods:{
             jump(status){
