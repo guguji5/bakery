@@ -385,20 +385,24 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    .add {
-        background: #fff url(../assets/images/ico-add.png) no-repeat 8px 6px;
+    .add:before{
+        content:'';display:block;width:15px;height:20px;position:absolute;top:16px;left:24px;
+        /*background: #fff url(../assets/images/ico-add.png) no-repeat 8px 6px;*/
+        background:#fff url('../assets/images/css_sprites.png') no-repeat  -42px -44px;background-size:126px
     }
     .select_address{
         float: right;
         margin-top: -35px;
-        background: url(http://m.holiland.com/mobile/script/images/down_ico-1.png) right center / 20px no-repeat;
+        /*background: url(../assets/images/down_ico-11.png) right center / 20px no-repeat;*/
+        background: url('../assets/images/css_sprites.png') -152px -105px;
         width: 20px;
         height: 20px;
         margin-right: 25px;
         display: block;
     }
     .select_address_up{
-        background: url(http://m.holiland.com/mobile/script/images/up_ico-1.png) right center / 20px no-repeat;
+        /*background: url(../assets/images/up_ico-1.png) right center / 20px no-repeat;*/
+        background: url('../assets/images/css_sprites.png') -130px -145px;
     }
     .lightblue{
         color:#6BC5E0

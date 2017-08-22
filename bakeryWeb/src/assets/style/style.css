@@ -42,6 +42,7 @@
 .gw-c .kx{padding:10px}
 .gw-c .kx .k-x{background:#ededed; padding:5px 10px; display:inline-block}
 .gw-c .kx .k-x:after{content: " "; display:inline-block; vertical-align:middle; margin-left:5px; width:20px; height:10px; background:url(../images/ico_jt.png) no-repeat 0 -10px ; background-size:15px;}
+.gw-c .kx .k-x:after{content: " "; display:inline-block; vertical-align:middle; margin-left:5px; width: 20px; height: 24px; background: url('../images/css_sprites.png') -10px -145px;}
 .gw-c .f-j .wy-gm{background:#ededed; padding:5px 10px; display:inline-block}
 .gw-c .f-j .gm{padding-top:10px;}
 .x-d{position:fixed; padding:10px; background:#ededed; left:0; width:100%; bottom:45px; overflow:hidden}
@@ -81,7 +82,7 @@ li.w-2 .ui-select-group .ui-select select{ font-size:13px; color:#959595;}
 .dd-ym .zffs .t-box .ui-btn{ width:auto; margin-left:5px; vertical-align:middle; height:31px; line-height:21px;}
 .dd-ym .zffs .t-box .ui-btns{ width:auto; margin-left:5px; vertical-align:middle; height:31px; line-height:21px;}
 .dd-ym .zffs .t-box .ui-form-field{ display:inline-block; width:130px; height:31px; font-size:13px}
-.dd-ym .ui-list-text>li{ padding-right:10px;margin:0 10px ;/*border-bottom: 0px solid #ccc;*/background:url(../images/right_ico-1.png) no-repeat right center;background-size:20px;}
+.dd-ym .ui-list-text>li{ padding-right:10px;margin:0 10px ;/*border-bottom: 0px solid #ccc;*/background:url(../images/css_sprites.png) no-repeat -95px -145px;}
 .dd-ym .zffs .t-box .radio{ padding:0 5px;    margin-top: 0px;}
 .dd-ym .zffs .t-box .m-10{ margin-right:10px;}
 .dd-ym .zffs .t-box .radio input{ vertical-align:middle}
@@ -91,7 +92,8 @@ li.w-2 .ui-select-group .ui-select select{ font-size:13px; color:#959595;}
 /*列表页*/
 .lb-y{border-bottom:56px solid transparent; /*overflow:hidden;*/ min-height:350px;}
 .lb-y .nav{padding:10px 0;border-bottom:1px solid #ccc;}
-.lb-y .nav li:after{content: ""; display:inline-block;margin-left:5px; width: 12px; height: 7px; background-position: -180px -13px; background: url(../images/ico_jt.png) no-repeat 0 -7px; background-size: 12px;}
+/*.lb-y .nav li:after{content: ""; display:inline-block;margin-left:5px; width: 12px; height: 7px; background-position: -180px -13px; background: url(../images/ico_jt.png) no-repeat 0 -7px; background-size: 12px;}*/
+.lb-y .nav li:after{content: ""; display:inline-block;margin-left:5px;width: 12px; height: 7px; background: url('../images/css_sprites.png') -14px -162px;}
 .lb-y .cp-list{padding:0 10px; padding-top:10px}
 .lb-y .cp-list li{float:left; width:50%; padding:0 10px; margin-bottom:20px}
 .lb-y .cp-list li .box{background:#fff; margin:0 auto; border:1px solid #eaeaea}
@@ -99,7 +101,7 @@ li.w-2 .ui-select-group .ui-select select{ font-size:13px; color:#959595;}
 .lb-y .cp-list li .box .imgur img{vertical-align:middle}
 .lb-y .cp-list li .box .t{padding:0 5px;line-height:30px; height:30px}
 .lb-y .cp-list li .box .j-g{padding:0 5px;line-height:27px; height:27px; padding-bottom:5px}
-.lb-y .cp-list li .tj{float:right; background:url(../images/tjia-101.png) no-repeat center;background-size:20px; width:20px;height:20px;/* color:#fff; font-size:18px; width:20px; height:20px; text-align:center; line-height:20px;border-radius:50%;-webkit-border-radius: 50%;*/}
+.lb-y .cp-list li .tj{float:right; background:url(../images/css_sprites.png) no-repeat -51px -147px; width:20px;height:20px;/* color:#fff; font-size:18px; width:20px; height:20px; text-align:center; line-height:20px;border-radius:50%;-webkit-border-radius: 50%;*/}
 .lb-y .b-z{padding:20px; line-height:30px}
 .lb-y .nav li{position:relative}
 .lb-y .nav li .x-l{position:absolute;left:50%;margin-left:-40%; width:85%; background:#fff;top:32px; display:none;padding:0 10px;border:1px solid #ccc;border-top:0;margin-top: -1px;}
@@ -131,7 +133,7 @@ li.w-2 .ui-select-group .ui-select select{ font-size:13px; color:#959595;}
 .overflow{overflow:hidden}
 .name-card{position:relative}
 .name-card .thumb{width:40px; height:40px; margin:10px;}
-.name-card .close-img{cursor:pointer;width:40px; height:40px; position:absolute; right:10px;top:50%; margin-top:-20px; background:url(../images/ico-close.png) no-repeat center; background-size:27px;}
+.name-card .close-img{cursor:pointer;width:40px; height:40px; position:absolute; right:10px;top:50%; margin-top:-20px; background:url(../images/css_sprites.png) no-repeat -12px -82px;}
 .su-x{overflow-y: scroll; padding:0 10px}
 .su-x li{padding:10px 0;border-bottom:1px solid #ccc; overflow:hidden;}
 .su-x li:last-of-type{border-bottom:0;}
@@ -145,7 +147,9 @@ li.w-2 .ui-select-group .ui-select select{ font-size:13px; color:#959595;}
 /*在线支付 下单查看订单*/
 .dd-xq{border-bottom:56px solid transparent; overflow:hidden}
 .dd-xq .add ul li{ height:30px; line-height:30px; padding:0 10px;}
-.dd-xq .add{ padding-left:20px; background:#fff url(../images/ico-add.png) no-repeat 10px 6px; background-size:15px}
+/*.dd-xq .add{ padding-left:20px; background:#fff url(../images/ico-add.png) no-repeat 10px 6px; background-size:15px}*/
+.dd-xq .add{ padding-left:20px;}
+.dd-xq .add:before{content:'';display:block;width:15px;height:20px;position:absolute;top:6px;left:10px;background:#fff url(../images/css_sprites.png) no-repeat -42px -44px;background-size:126px}
 .dd-xq  .ms{    -webkit-box-flex: 1;    -webkit-box-align: start;}
 .dd-xq .ui-list-one .ui-list-info{-webkit-box-align: start;}
 .dd-xq  .ui-txt-info{ text-align:right}
@@ -180,7 +184,8 @@ li.w-2 .ui-select-group .ui-select select{ font-size:13px; color:#959595;}
 .ck-dd .t .ui-list-info{padding:0px; -webkit-box-pack:end}
 .ck-dd .btn a{display:inline-block; padding:2px 3px; border:1px solid #d2d2d2; margin-left:5px}
 .ck-dd .j-g{display: -webkit-box; -webkit-box-orient: horizontal; -webkit-box-pack: center; -webkit-box-align: center;} .ck-dd .hd{padding:10px 0; background:#fff} .ck-dd .hd li{position:relative}
-.ck-dd .hd li:after{content: ""; display: inline-block; margin-left: 5px; width: 12px; height: 7px; background-position: -180px -13px; background: url(../images/ico_jt.png) no-repeat 0 -7px; background-size: 12px;}
+/*.ck-dd .hd li:after{content: ""; display: inline-block; margin-left: 5px; width: 12px; height: 7px; background-position: -180px -13px; background: url(../images/ico_jt.png) no-repeat 0 -7px; background-size: 12px;}*/
+.ck-dd .hd li:after{content: ""; display: inline-block; margin-left: 5px;width: 12px; height: 7px; background: url('../images/css_sprites.png') -14px -162px;}
 .ck-dd .hd li .x-l{position:absolute; right:0; width:80%; background:#eeeeee;top:32px; display:none; z-index:2}
 .ck-dd .hd li .x-l a{display:block; text-align:center; line-height:30px;}
 .ck-dd .hd li .p-x{position:absolute; right:0; width:80%; background:#eeeeee;top:32px; display:none;z-index:2}
@@ -224,7 +229,7 @@ li.w-2 .ui-select-group .ui-select select{ font-size:13px; color:#959595;}
 .ul-111 .li-111{float:left;width:31%;margin-right:10px;margin-bottom:10px;border:1px solid #ccc;background:#fff;text-align:center;}
 .ul-111 .li-111:hover{border:1px solid red;}
 .ul-111 .li-111:hover a{color:red;}
-.city-list .bd ul li.li-111:nth-child(3n){margin-right:0;bottom:1px solid #ccc}
+.city-list .bd ul li.li-111:nth-child(3n){margin-right:0;border-bottom:1px solid #ccc}
 .city-list .bd ul li.li-111:last-of-type{border-bottom:1px solid #ccc;}
 .right_ssl{float:right;width:5%;background:#fdfdfd;height:100%;text-align:center; height:100%; position:fixed; right:0px; vertical-align:middle; padding:3% 0;}
 .right_ssl a{display:block;color:#DD7499;height:4%;}
@@ -296,6 +301,6 @@ li.w-2 .ui-select-group .ui-select select{ font-size:13px; color:#959595;}
 .popup .anniu a.bg-959696{background:#ededed;margin-left:30px; color:#fff}
 
 .mflqu{width:80px;height:25px;line-height:25px;position:relative;}
-.mflqu .mflqu_a{text-align:left;color:#626262;font-size:12px;padding-left:10px;text-decoration:none;display:block;width:100%;height:100%;border-radius:5px;background:#ff0 url(/statics/images/xsj_t.png) no-repeat 62px center;background-size:10px;position:absolute;z-index:3}
+/*.mflqu .mflqu_a{text-align:left;color:#626262;font-size:12px;padding-left:10px;text-decoration:none;display:block;width:100%;height:100%;border-radius:5px;background:#ff0 url(../images/xsj_t.png) no-repeat 62px center;background-size:10px;position:absolute;z-index:3}*/
 .popup{display:none;}
 .mflqu:hover .popup{display:block;}

@@ -90,7 +90,8 @@ select{border: 0;background: 0 0;width: 100%;padding-right: 5px;}
 .ui-checkbox, .ui-checkbox-s,.ui-radio{display: inline-block;position:relative;overflow:hidden}
 .ui-checkbox input,.ui-radio input, .ui-checkbox-s input{display: inline-block;width: 18px;height: 18px;position: relative;overflow: visible;background:#fff;border:1px solid #d2d2d2;-webkit-appearance: none;outline: 0;margin-right: 8px;vertical-align: middle;-webkit-border-radius: 100px;}
 .ui-checkbox input:before,.ui-radio input:before, .ui-checkbox-s input:before{width:22px;height:22px;background:#ff4f06;font-style: normal;-webkit-font-smoothing: antialiased;-webkit-text-stroke-width: .2px;display: block;color: rgba(0,0,0,.5);content: " ";color: #18b4ed;position: absolute;top: -90px;left: 0px;color: #dedfe0;border-radius:100px;}
-.ui-checkbox input:checked:before,.ui-radio input:checked:before, .ui-checkbox-s input:checked:before{background: url(../images/ico_g.png) no-repeat center;background-size: 22px;top:-4px;left:0px}
+/*.ui-checkbox input:checked:before,.ui-radio input:checked:before, .ui-checkbox-s input:checked:before{background: url(../images/ico_g.png) no-repeat center;background-size: 22px;top:-4px;left:0px}*/
+.ui-checkbox input:checked:before,.ui-radio input:checked:before, .ui-checkbox-s input:checked:before{width: 26px; height: 26px;background: url('../images/css_sprites.png') -152px -59px;top:-7px;left:-2px}
 /*布局*/
 .ui-nowrap{max-width: 100%;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
 .ui-border-tb { border: 1px solid #F1F1F1;}
@@ -111,7 +112,9 @@ select{border: 0;background: 0 0;width: 100%;padding-right: 5px;}
 .ui-list{background-color: #fff;width: 100%;}
 .ui-list>li{position: relative;display: -webkit-box;}
 .ui-list-text>li, .ui-list-pure>li{position: relative;padding-top: 10px;padding-bottom: 10px;padding-right: 15px;-webkit-box-align: center;}
-.ui-list-text.ui-list-link li{padding-right: 0;background: url(../images/ico_yjt.png) no-repeat right center;-webkit-background-size: 12px;border-bottom:1px solid #f1f1f1;}
+/*.ui-list-text.ui-list-link li{padding-right: 0;background: url(../images/ico_yjt.png) no-repeat right center;-webkit-background-size: 12px;border-bottom:1px solid #f1f1f1;}*/
+.ui-list-text.ui-list-link li{padding-right: 0;border-bottom:1px solid #f1f1f1;}
+.ui-list-text.ui-list-link li:after{content:'';display:block;top:12px;right:5px;position:absolute;width:12px;height:23px;background: url(../images/css_sprites.png) no-repeat -96px -146px;}
 .ui-list-text.ui-list-link li:last-of-type{border-bottom:0;}
 .disp_a a{display:block;width:100%;height:100%;}
 .ui-list-thumb{width: 80px;height: 80px;margin: 10px;position: relative;}
@@ -127,8 +130,10 @@ i.ico-cg{background:url(../images/ico-cg.png) no-repeat center;background-size:2
 /*首页头部*/
 #header-index {z-index: 999;background-color: #f9f9f9;position: relative;height: 60px;display: block; border-bottom:1px solid #dddddd }
 #header-index .header_l{position: absolute; top: 0; left: 10px;}
-#header-index .header_l .logo{width: 80px; height: 60px; display: block; text-indent: -999em; overflow: hidden; background: url(../images/logo.png) no-repeat center left;  background-size: 80px; float:left;background-position-y: 19px}
-#header-index .header_l .city{display:block; float:left;color:#6dc2df;background: url(../images/ico-city.png) no-repeat 5px 33px ;background-size: 10px; padding-left:20px; padding-top:30px;}
+#header-index .header_l .logo{width: 80px; height: 60px; display: block; text-indent: -999em; overflow: hidden; background: url(../images/css_sprites.png) no-repeat -9px 11px;  background-size: 159px 135px; float:left;}
+/*#header-index .header_l .city{display:block; float:left;color:#6dc2df;background: url(../images/css_sprites.png) no-repeat -197px -29px ;padding-left:20px; padding-top:30px;}*/
+#header-index .header_l .city{display:block; float:left;color:#6dc2df;padding-left:20px; padding-top:30px;position:relative}
+#header-index .header_l .city:before{content:'';display:block;width:12px;height:15px;position:absolute;top:32px;left:7px;background: url(../images/css_sprites.png) no-repeat -143px -40px ;background-size:161px;}
 #header-index .header_r{position: absolute; top: 10px; right: 10px; color:#6dc2df; line-height:60px;}
 #header-index .header_r a{ color:#6dc2df; padding:0 5px;}
 
@@ -136,7 +141,7 @@ i.ico-cg{background:url(../images/ico-cg.png) no-repeat center;background-size:2
 #header {z-index:80;position: relative;height: 60px;display: block; color:#fff}
 #header .header_l{position: absolute; top: 0; left: 10px;}
 #header .header_l a{width: 32px; height: 60px; display: block; text-indent: -999em; overflow: hidden; float:left}
-#header .fh{background: url(../images/ico-fh.png) no-repeat center left;  background-size: 15px;}
+#header .fh{background: url(../images/css_sprites.png) no-repeat -201px 4px;}
 #header h1{ font-size: 20px; line-height: 60px; text-align: center; font-weight: normal;}
 #header .header_r{position: absolute; top: 0; right: 10px;}
 #header .header_r a{width: 30px; height: 60px; display: block; overflow: hidden; position:relative}
@@ -161,8 +166,8 @@ a.tck {
 }
 /*搜索*/
 .ui-searchbar{padding:10px;position:relative;}
-.ui-searchbar .btn{display:block; position:absolute; left:15px; top:15px; border:none; width:29px; height:29px;background: url(../images/ico-reach.png) no-repeat center left; background-size: 20px;}
-.ui-searchbar .input{padding-left:30px;}
+.ui-searchbar .btn{display:block; position:absolute; left:15px; top:15px; border:none; width:29px; height:29px;background: url(../images/css_sprites.png) no-repeat -152px -10px;}
+.ui-searchbar .input{padding-left:35px;}
 
 
 .mm{

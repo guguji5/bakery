@@ -27,14 +27,14 @@
 
             <div class="nav">
                 <ul class="nav-list">
-                    <li><a @click="jump"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien3awmr2j20qo0cign2.jpg"> </a></li>
-                    <li><a @click="jump"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien43k3bwj20qo0citab.jpg"> </a></li>
-                    <li><a @click="jump"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien4xp7ctj20ro0cnjsb.jpg"> </a></li>
+                    <li><a @click="jump()"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien3awmr2j20qo0cign2.jpg"> </a></li>
+                    <li><a @click="jump()"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien43k3bwj20qo0citab.jpg"> </a></li>
+                    <li><a @click="jump()"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien4xp7ctj20ro0cnjsb.jpg"> </a></li>
                 </ul>
                 <ul class="ui-row-flex">
-                    <li class="ui-col"><a @click="jump"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fielyr3ykfj205u03w3yr.jpg"></a></li>
-                    <li class="ui-col"><a @click="jump"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien6657z9j205u03wjrd.jpg"></a></li>
-                    <li class="ui-col"><a @click="jump"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien6kc4arj205u03wt9h.jpg"></a></li>
+                    <li class="ui-col"><a @click="jump()"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fielyr3ykfj205u03w3yr.jpg"></a></li>
+                    <li class="ui-col"><a @click="jump()"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien6657z9j205u03wjrd.jpg"></a></li>
+                    <li class="ui-col"><a @click="jump()"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien6kc4arj205u03wt9h.jpg"></a></li>
                 </ul>
             </div>
         </section>
@@ -68,7 +68,8 @@
         methods:{
             jump(router){
                 router= router || 'category';
-                this.$router.push({ name: 'category'})
+                console.log(router);
+                this.$router.push({ name: router})
             },
         },
         mounted(){

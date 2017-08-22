@@ -41,7 +41,7 @@ router.get("/:id", (req, res) => {
          //     })
          //  },
           get_product: function(cb) {
-            var cursor =db.collection('productDetail').findOne({"_id":o_id})
+            var cursor =db.collection('product').findOne({"_id":o_id})
             // 无论他找到与找不到，他都会有进入第一个回调
              cursor.then(function(res){
                 if(res===null){

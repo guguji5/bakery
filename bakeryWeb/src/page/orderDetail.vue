@@ -16,15 +16,15 @@
                     <div class="ui-list-info">
                         <div class="ms"><h4 class="ui-nowrap">{{item.name}}</h4><p class="c-ccc"> {{item.sizeContent}}
                             ;</p></div>
-                        <div class="ui-txt-info"><p>{{item.price}}</p><p>×{{item.piece}}</p><div></div></div>
+                        <div class="ui-txt-info"><p>{{item.price | currency}}</p><p>×{{item.piece}}</p><div></div></div>
                     </div>
                 </li>
 
             </ul>
-            <ul class="ui-list ui-list-text  mb10" style="    border-top: 1px solid #cccccc;">
+            <ul class="ui-list ui-list-text  mb10" style="border-top: 1px solid #cccccc;">
                 <li class="ui-border-b p10">
                     <span class="tr">合计</span>
-                    <p>{{data.amount}}+{{data.fee}}运费<br><em class="c-blue">{{data.amount+data.fee}}</em></p>
+                    <p>{{data.amount | currency}}+{{data.fee | currency}}运费<br><em class="c-blue">{{data.amount+data.fee | currency}}</em></p>
                 </li>
                 <li class="ui-border-b p10">
                     <div>
