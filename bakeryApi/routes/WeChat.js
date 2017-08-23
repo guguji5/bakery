@@ -143,7 +143,7 @@ router.post('/signature',(req,res)=>{
             if(data.errcode===0){
                 res.json(Object.assign(sign(data.ticket, req.body.url,req.body.timestamp),{
                     appid:key.appid,
-                    timestamp:req.params.timestamp
+                    timestamp:req.body.timestamp
                 }))
             }
         })
