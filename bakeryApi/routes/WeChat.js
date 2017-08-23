@@ -9,6 +9,11 @@ const ObjectId = require('mongodb').ObjectID;
 const async = require("async");
 const setAccessToken = require('../dbconf/access_token');
 const setRefreshToken = require('../dbconf/refresh_token');
+const sign = require('../wechat/sign.js');//用来生成signature
+const access_token = require('../wechat/access_token.js');//用来生成signature
+const jsapi_ticket = require('../wechat/jsapi_ticket.js')
+const key = require('../dbconf/key.json');
+
 
 router.get("/", (req, res) => {
     //1.获取微信服务器Get请求的参数 signature、timestamp、nonce、echostr
@@ -92,7 +97,7 @@ router.post('/', function (req, res) {
 router.get('/getAccessToken',function (req,res) {
     var code=req.query.code;
     if(code){
-        //通过code去获取access_token
+        //通过code去获取access_token (网页授权)
         request({
             url: 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx22e00a74ae666fe7&secret=bf2e9bfa3da839d38f86dc0ce1cf9cfe&code='+code+'&grant_type=authorization_code',
             method: "get",
@@ -128,5 +133,23 @@ router.get('/getAccessToken',function (req,res) {
     }
 })
 
+router.post('/signature',(req,res)=>{
+    if(req.body.url && req.body.timestamp){
+        access_token.then(function (data) {
+            console.log(data)
+            return jsapi_ticket(data.access_token)
+        }).then(function (data) {
+            console.log(data)
+            if(data.errcode===0){
+                res.json(Object.assign(sign(data.ticket, req.body.url,req.body.timestamp),{
+                    appid:key.appid,
+                    timestamp:req.params.timestamp
+                }))
+            }
+        })
+    }else{
+        res.send('没传入timestamp')
+    }
+})
 
 module.exports = router
