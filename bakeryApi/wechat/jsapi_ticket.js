@@ -3,7 +3,7 @@ const request = require('request');
 const ticket =  require('./setJsapi-ticket');
 const log = require('../dbconf/log.js');
 
-let ticket = access_token => new Promise(function (resolve,reject) {
+let jsapi_ticket = access_token => new Promise(function (resolve,reject) {
     //应该存起来，先去哪缓存的。
     ticket.query(function (data) {
         if(data){
@@ -32,4 +32,4 @@ let ticket = access_token => new Promise(function (resolve,reject) {
 
 })
 
-module.exports = ticket;
+module.exports = jsapi_ticket;
