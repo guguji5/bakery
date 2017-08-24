@@ -1,6 +1,6 @@
 // 存入access_token表
 const d = require('../dbconf/');
-let setAccssToken = (token) => {
+let setAccessToken = (token) => {
     var insertAccess = function (db, callback) {
         db.collection('access_token').save({
             "createdAt": new Date(),
@@ -49,6 +49,6 @@ let queryAccessToken = (f) =>{
 
 
 module.exports={
-    "setAccssToken":setAccssToken,
+    "setAccessToken":setAccessToken,
     "queryAccessToken":queryAccessToken
 };
