@@ -140,8 +140,13 @@ router.post('/signature',(req,res)=>{
             return jsapi_ticket(data.access_token)
         }).then(function (data) {
             // console.log(data) 如果是从微信接口返回的则有errcode 如果从数据库取的则有_id
-            if(data.errcode===0  || data._id){
+            if(data.errcode===0){
                 res.json(Object.assign(sign(data.ticket, req.body.url,req.body.timestamp),{
+                    appid:key.appid,
+                    timestamp:req.body.timestamp
+                }))
+            }else if(data._id){
+                res.json(Object.assign(sign(data.jsapi_ticket, req.body.url,req.body.timestamp),{
                     appid:key.appid,
                     timestamp:req.body.timestamp
                 }))
