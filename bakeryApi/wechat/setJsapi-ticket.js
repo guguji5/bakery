@@ -28,6 +28,7 @@ let queryTicket = (f) =>{
         var cursor = db.collection('access_token').findOne({"_id": "jsapi_ticket"});
 
         cursor.then(function(res){
+            console.log('queryTicket',res)
             if(res===null){
                 callback('没有查询到jsapi_ticket的记录')
             }else{

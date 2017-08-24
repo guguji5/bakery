@@ -6,7 +6,7 @@ const log = require('../dbconf/log.js');
 let promise = new Promise(function(resolve, reject) {
     //应该存起来，先去哪缓存的。
     access.queryAccessToken(function (data) {
-        if(data){
+        if(Object.prototype.toString().call(data).indexOf('Object')>-1){
         //如果获取到access_token，则不用去拿
             console.log('access_token还未过期',log.date())
             resolve(data);
