@@ -7,8 +7,8 @@ const request = require('request');
 const log = require('../dbconf/log')
 const ObjectId = require('mongodb').ObjectID;
 const async = require("async");
-const setAccessToken = require('../dbconf/access_token');
-const setRefreshToken = require('../dbconf/refresh_token');
+// const setAccessToken = require('../dbconf/access_token');
+// const setRefreshToken = require('../dbconf/refresh_token');
 const sign = require('../wechat/sign.js');//用来生成signature
 const access_token = require('../wechat/access_token.js');//用来生成signature
 const jsapi_ticket = require('../wechat/jsapi_ticket.js')
@@ -105,8 +105,8 @@ router.get('/getAccessToken',function (req,res) {
         }, function (error, response, body) {
 	     console.log("access_token's body",body);
             if (!body.errcode && response.statusCode == 200) {
-                setAccessToken(body.openid,body.access_token);
-                setRefreshToken(body.openid,body.refresh_token);
+                // setAccessToken(body.openid,body.access_token);只是用来拿用户信息的，我只获取一次，所以不用缓存
+                // setRefreshToken(body.openid,body.refresh_token);
                 //拉取用户基本信息
                 request({
                     url:"https://api.weixin.qq.com/sns/userinfo?access_token="+body.access_token+"&openid="+body.openid+"&lang=zh_CN",

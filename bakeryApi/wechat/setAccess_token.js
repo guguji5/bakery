@@ -1,10 +1,10 @@
 // 存入access_token表
 const d = require('../dbconf/');
-let setAccssToken = (openid,token) => {
+let setAccssToken = (token) => {
     var insertAccess = function (db, callback) {
         db.collection('access_token').save({
             "createdAt": new Date(),
-            "_id": openid,
+            "_id": "access_token",
             "access_token": token
         }, function (err, result) {
             d.assert.equal(err, null);
