@@ -23,18 +23,28 @@ let setAccessToken = (token) => {
 
 let queryAccessToken = (f) =>{
     var findAccess = function (db, callback) {
-        var result={};
-        var cursor = db.collection('access_token').find({
-            "_id": "access_token",
-        });
-        cursor.each(function(err, doc) {
-            d.assert.equal(err, null);
-            if (doc != null) {
-                result=doc
-            } else {
-                callback(result);
+        // var result=[];
+        var cursor = db.collection('access_token').findOne({"_id": "access_token"});
+        // cursor.each(function(err, doc) {
+        //     d.assert.equal(err, null);
+        //     if (doc != null) {
+        //         result=doc
+        //     } else {
+        //         callback(result);
+        //     }
+        // });
+
+
+        // var cursor=db.collection('order').findOne({"_id":o_id});
+        cursor.then(function(res){
+            if(res===null){
+                callback('没有查询到id为'+id+'的记录')
+            }else{
+                callback(res);
             }
-        });
+        })
+
+
     };
 
     d.MongoClient.connect(d.url, function (err, db) {
