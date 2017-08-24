@@ -27,7 +27,7 @@ let queryAccessToken = (f) =>{
 
         cursor.then(function(res){
             if(res===null){
-                callback('没有查询到access_token的记录')
+                callback('\n没有查询到access_token的记录')
             }else{
                 callback(res);
             }

@@ -30,7 +30,7 @@ let queryTicket = (f) =>{
         cursor.then(function(res){
             console.log('queryTicket',res)
             if(res===null){
-                callback('没有查询到jsapi_ticket的记录')
+                callback('\n没有查询到jsapi_ticket的记录')
             }else{
                 callback(res);
             }

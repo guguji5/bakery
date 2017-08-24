@@ -8,7 +8,7 @@ let jsapi_ticket = access_token => new Promise(function (resolve,reject) {
     ticket.query(function (data) {
         if(Object.prototype.toString.call(data).indexOf('Object')>-1){
             //如果获取到jsapi_ticket，则不用去拿
-            console.log('jsapi_ticket还未过期',log.date())
+            console.log('\njsapi_ticket还未过期',log.date())
             resolve(data);
         }else{
             request({
@@ -17,8 +17,8 @@ let jsapi_ticket = access_token => new Promise(function (resolve,reject) {
                 json: true
             }, function (error, response, body) {
                 if (!body.errcode && response.statusCode == 200 && body.errcode==0) {
-                    console.log('jsapi_ticket不存在或已过期',log.date())
-                    console.log('success jsapi_ticket:',body,log.date())
+                    console.log('\njsapi_ticket不存在或已过期',log.date())
+                    console.log('\nsuccess jsapi_ticket:',body,log.date())
                     ticket.set(body.ticket)
                     resolve(body);
                 }else{
