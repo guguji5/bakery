@@ -44,7 +44,7 @@ export default {
               timestamp:res.data.timestamp, // 必填，生成签名的时间戳
               nonceStr: 'guguji5', // 必填，生成签名的随机串
               signature: res.data.signature,// 必填，签名，见附录1
-              jsApiList: ['scanQRCode','onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+              jsApiList: ['scanQRCode','onMenuShareAppMessage','chooseWXPay','chooseImage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
           });
       });
 

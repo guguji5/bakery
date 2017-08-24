@@ -35,7 +35,7 @@
                 </li>
             <!--</ul>-->
             <!--<ul class="ui-list ui-list-text ui-list-link ui-border-tb p10 mb10">-->
-                <li class="p10 ui-border-b disp_a"> <a href="">更换手机号</a>  </li>
+                <li class="p10 ui-border-b disp_a" @click="test()"> <a href="">更换手机号</a>  </li>
             <!--</ul>-->
             <!--<ul class="ui-list ui-list-text ui-list-link ui-border-tb p10 mb10">-->
                 <li class="p10 disp_a"> <a href="">退出</a> <!-- <a href="">登录</a> --> </li>
@@ -45,7 +45,9 @@
 </template>
 
 <script>
-    import {about} from '../service'
+    import {about} from '../service';
+    import wx from 'weixin-js-sdk'
+
     export default {
         name: 'user',
         data () {
@@ -62,6 +64,16 @@
         methods:{
             jump(status){
                 this.$router.push({ name: 'order', params: { status: status}})
+            },
+            test(){
+                wx.chooseImage({
+                    count: 1, // 默认9
+                    sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+                    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+                    success: function (res) {
+                        var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                    }
+                });
             }
         },
         mounted(){
