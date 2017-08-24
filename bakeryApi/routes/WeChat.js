@@ -113,7 +113,7 @@ router.get('/getAccessToken',function (req,res) {
                     method: "get",
                     json: true
                 }, function (error, response, body) {
-                    console.log("\nsuccess info's body",log.date())
+                    console.log("\nsuccess information's body",log.date())
                     if (!body.errcode && response.statusCode == 200) {
                         res.json(body)
                     }else{
