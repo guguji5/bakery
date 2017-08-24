@@ -6,9 +6,9 @@ const log = require('../dbconf/log.js');
 let jsapi_ticket = access_token => new Promise(function (resolve,reject) {
     //应该存起来，先去哪缓存的。
     ticket.query(function (data) {
-        if(Object.prototype.toString.call(data).indexOf('Object')>-1){
+        if(data.jsapi_ticket){
             //如果获取到jsapi_ticket，则不用去拿
-            console.log('\njsapi_ticket还未过期',log.date())
+            console.log('\njsapi_ticket还未过期',data,log.date())
             resolve(data);
         }else{
             request({

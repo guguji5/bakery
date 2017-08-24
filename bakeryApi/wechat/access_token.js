@@ -6,9 +6,9 @@ const log = require('../dbconf/log.js');
 let promise = new Promise(function(resolve, reject) {
     //应该存起来，先去哪缓存的。
     access.queryAccessToken(function (data) {
-        if(Object.prototype.toString.call(data).indexOf('Object')>-1){
+        if(data.access_token){
         //如果获取到access_token，则不用去拿
-            console.log('\naccess_token还未过期',log.date())
+            console.log('\naccess_token还未过期',data,log.date())
             resolve(data);
         }else{
         //如果获取不到则通过微信的接口去获取，并存在access_token里
