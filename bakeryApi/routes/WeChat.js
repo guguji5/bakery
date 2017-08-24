@@ -103,7 +103,7 @@ router.get('/getAccessToken',function (req,res) {
             method: "get",
             json: true
         }, function (error, response, body) {
-	     console.log("access_token's body",body,log.date());
+	     console.log("access_token's body",log.date());
             if (!body.errcode && response.statusCode == 200) {
                 // setAccessToken(body.openid,body.access_token);只是用来拿用户信息的，我只获取一次，所以不用缓存
                 // setRefreshToken(body.openid,body.refresh_token);
