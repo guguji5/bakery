@@ -40,6 +40,7 @@ let queryAccessToken = (f) =>{
     d.MongoClient.connect(d.url, function (err, db) {
         d.assert.equal(null, err);
         findAccess(db, function (data) {
+            console.log(date);
             db.close();
             f(data);
         });

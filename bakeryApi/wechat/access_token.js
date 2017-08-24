@@ -5,9 +5,11 @@ const key = require('../dbconf/key.json');
 const log = require('../dbconf/log.js');
 let promise = new Promise(function(resolve, reject) {
     //应该存起来，先去哪缓存的。
+    console.log('before')
     access.queryAccessToken(function (data) {
         console.log('\nqueryAccessToken',data,log.date())
     })
+    console.log('after')
     request({
         url:"https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid="+key.appid+"&secret="+key.appserect,
         method: "get",
