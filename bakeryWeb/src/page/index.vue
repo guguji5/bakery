@@ -27,7 +27,7 @@
 
             <div class="nav">
                 <ul class="nav-list">
-                    <li><a @click="jump()"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien3awmr2j20qo0cign2.jpg"> </a></li>
+                    <li><a @click="test()"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien3awmr2j20qo0cign2.jpg"> </a></li>
                     <li><a @click="jump()"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien43k3bwj20qo0citab.jpg"> </a></li>
                     <li><a @click="jump()"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien4xp7ctj20ro0cnjsb.jpg"> </a></li>
                 </ul>
@@ -45,6 +45,7 @@
     import Vue from 'vue'
     import {isUser,insertUser,accessToken} from '../service'
     import { Swipe, SwipeItem } from 'mint-ui';
+    import wx from 'weixin-js-sdk'
 
     Vue.component(Swipe.name, Swipe);
     Vue.component(SwipeItem.name, SwipeItem);
@@ -71,6 +72,16 @@
                 console.log(router);
                 this.$router.push({ name: router})
             },
+            test(){
+                console.log(wx);
+                wx.scanQRCode({
+                    needResult: 0, // 默认为0，扫描结果由微信处理，1则直接返回扫描结果，
+                    scanType: ["qrCode","barCode"], // 可以指定扫二维码还是一维码，默认二者都有
+                    success: function (res) {
+                        var result = res.resultStr; // 当needResult 为 1 时，扫码返回的结果
+                    }
+                });
+            }
         },
         mounted(){
             var code;

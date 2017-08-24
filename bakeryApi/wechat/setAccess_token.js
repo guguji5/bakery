@@ -3,7 +3,7 @@ const d = require('../dbconf/');
 let setAccessToken = (token) => {
     var insertAccess = function (db, callback) {
         db.collection('access_token').save({
-            "createdAt": new Date(),
+            "createAt": new Date(),
             "_id": "access_token",
             "access_token": token
         }, function (err, result) {

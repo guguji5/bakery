@@ -44,7 +44,7 @@ export default {
               timestamp:res.data.timestamp, // 必填，生成签名的时间戳
               nonceStr: 'guguji5', // 必填，生成签名的随机串
               signature: res.data.signature,// 必填，签名，见附录1
-              jsApiList: ['scanQRCode'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+              jsApiList: ['scanQRCode','onMenuShareAppMessage'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
           });
       });
 
@@ -54,8 +54,24 @@ export default {
       document.addEventListener('click',function (e) {
           that.$store.commit('footListFalse')
       })
-      wx.ready(function(){
+
+      wx.ready(function() {
           console.log('wx.ready');
+          wx.onMenuShareAppMessage({
+              title: 'heiheihei', // 分享标题
+              desc: 'This is a test!', // 分享描述
+              link: 'test.xq0213.top', // 分享链接
+              imgUrl: 'http://img06.tooopen.com/images/20160712/tooopen_sy_170083325566.jpg', // 分享图标
+              type: '', // 分享类型,music、video或link，不填默认为link
+              dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+              success: function() {
+                  // 用户确认分享后执行的回调函数
+                  console.log('分享成功',that.$store.state.fakeData)
+              },
+              cancel: function() {
+                  // 用户取消分享后执行的回调函数
+              }
+          });
       });
 
       wx.error(function(res){
@@ -64,10 +80,6 @@ export default {
 
           //可以更新签名
       });
-
-//      setTimeout(function () {
-//          that.test()
-//      },400)
 
   },
   methods:{

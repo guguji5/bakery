@@ -5,7 +5,7 @@ const log = require('../dbconf/log.js');
 let setTicket = (token) => {
     var insertTicket = function (db, callback) {
         db.collection('access_token').save({
-            "createdAt": new Date(),
+            "createAt": new Date(),
             "_id": "jsapi_ticket",
             "jsapi_ticket": token
         }, function (err, result) {
