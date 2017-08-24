@@ -23,13 +23,14 @@ let setAccssToken = (token) => {
 
 let queryAccessToken = (f) =>{
     var findAccess = function (db, callback) {
+        var result={};
         var cursor = db.collection('access_token').find({
             "_id": "access_token",
         });
         cursor.each(function(err, doc) {
             d.assert.equal(err, null);
             if (doc != null) {
-                result.push(doc)
+                result=doc
             } else {
                 callback(result);
             }
