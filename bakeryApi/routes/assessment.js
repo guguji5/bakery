@@ -11,7 +11,7 @@ var async = require("async");
 //
 router.put("/insert", (req, res) => {
     res.type('application/json');
-    console.log(req.body)
+    // console.log(req.body)
     // 根据id找到对于的order然后维护assessment信息
     if(req.body){
         var id=new ObjectId(req.body.id);
@@ -25,7 +25,7 @@ router.put("/insert", (req, res) => {
             $set:{assessment:assessment}
         }, function(err, result) {
             d.assert.equal(err, null);
-            console.log("order'assessment has inserted success");
+            console.log("\norder'assessment has inserted success",log.date());
             callback(result);
         });
     };
@@ -45,7 +45,7 @@ router.put("/insert", (req, res) => {
 router.get('/:productId',(req,res) =>{
     var productId = req.params.productId || '';
     res.type('application/json');
-    console.log(productId)
+    // console.log(productId)
     var findAssess = function(db, callback) {
         var result=[];
         var cursor=db.collection('order').find({

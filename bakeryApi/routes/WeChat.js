@@ -34,7 +34,7 @@ router.get("/", (req, res) => {
 
     //4.开发者获得加密后的字符串可与signature对比，标识该请求来源于微信
     if(resultCode === signature){
-        console.log('matched',echostr)
+        console.log('matched',echostr,log.date())
         res.send(echostr);
     }else{
         console.log('mismatch',resultCode,signature)
@@ -90,7 +90,7 @@ router.post('/', function (req, res) {
 
 
 
-    console.log('reqData:',data,'resData:',resMsg);
+    // console.log('reqData:',data,'resData:',resMsg);
     res.end(resMsg);
 });
 
@@ -103,7 +103,7 @@ router.get('/getAccessToken',function (req,res) {
             method: "get",
             json: true
         }, function (error, response, body) {
-	     console.log("access_token's body",body);
+	     console.log("access_token's body",body,log.date());
             if (!body.errcode && response.statusCode == 200) {
                 // setAccessToken(body.openid,body.access_token);只是用来拿用户信息的，我只获取一次，所以不用缓存
                 // setRefreshToken(body.openid,body.refresh_token);
@@ -113,11 +113,11 @@ router.get('/getAccessToken',function (req,res) {
                     method: "get",
                     json: true
                 }, function (error, response, body) {
-                    console.log("info's body",body)
+                    console.log("\nsuccess info's body",log.date())
                     if (!body.errcode && response.statusCode == 200) {
                         res.json(body)
                     }else{
-                        console.log(body);
+                        // console.log(body);
                         res.send(body);
                     }
                 })
@@ -136,10 +136,10 @@ router.get('/getAccessToken',function (req,res) {
 router.post('/signature',(req,res)=>{
     if(req.body.url && req.body.timestamp){
         access_token.then(function (data) {
-            console.log(data)
+            // console.log(data)
             return jsapi_ticket(data.access_token)
         }).then(function (data) {
-            console.log(data)
+            // console.log(data)
             if(data.errcode===0){
                 res.json(Object.assign(sign(data.ticket, req.body.url,req.body.timestamp),{
                     appid:key.appid,

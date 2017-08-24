@@ -118,7 +118,7 @@ router.put("/insert", (req, res) => {
     var insertOrder = function(db, callback) {
         db.collection('order').insert( model, function(err, result) {
           d.assert.equal(err, null);
-          console.log("order has inserted success");
+          console.log("\norder has inserted success",log.date());
           callback(result);
         });
     

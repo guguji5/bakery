@@ -18,7 +18,7 @@ router.post("/info", (req, res) => {
 
     }
 
-    console.log(req.body)
+    // console.log(req.body)
 
     var findSizeInfo = function(db,arr,callback) {
         var results=[];
@@ -29,7 +29,7 @@ router.post("/info", (req, res) => {
                   "num":value.size
                 }, function(err, res) {
                   d.assert.equal(err, null);
-                  console.log("size infomation has found success");
+                  console.log("\nsize infomation has found success");
                   results.push(res)
                   end();
                 });
@@ -57,7 +57,7 @@ router.post("/info", (req, res) => {
                   "_id":new ObjectId(value.productId)
                 },{ name: 1, img_url: 1,price:1,prices:1,size:1}, function(err, res) {
                   d.assert.equal(err, null);
-                  console.log("product infomation has found success");
+                  console.log("\nproduct infomation has found success",log.date());
                   results.push(res)
                   end();
                 });

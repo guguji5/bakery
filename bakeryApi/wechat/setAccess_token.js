@@ -20,4 +20,34 @@ let setAccssToken = (token) => {
         });
     })
 };
-module.exports=setAccssToken;
+
+let queryAccessToken = (f) =>{
+    var findAccess = function (db, callback) {
+        var cursor = db.collection('access_token').find({
+            "_id": "access_token",
+        });
+        cursor.each(function(err, doc) {
+            d.assert.equal(err, null);
+            if (doc != null) {
+                result.push(doc)
+            } else {
+                callback(result);
+            }
+        });
+    };
+
+    d.MongoClient.connect(d.url, function (err, db) {
+        d.assert.equal(null, err);
+        findAccess(db, function (data) {
+            db.close();
+            f(data);
+        });
+    })
+
+}
+
+
+module.exports={
+    "setAccssToken":setAccssToken,
+    "queryAccessToken":queryAccessToken
+};

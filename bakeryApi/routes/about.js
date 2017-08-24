@@ -3,7 +3,7 @@ const router = express();
 const d = require('../dbconf/')
 const date = require('../dbconf/date')
 const uid = require('../dbconf/uid')
-const log = require('../dbconf/log')
+// const log = require('../dbconf/log')
 var ObjectId = require('mongodb').ObjectID;
 var async = require("async");
 
