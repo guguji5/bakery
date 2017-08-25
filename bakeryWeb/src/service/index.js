@@ -65,10 +65,10 @@ let about = userId => axios.get('/about/'+userId);
 //添加评论
 let addAssess = data =>axios.put('/assessment/insert',data);
 //微信里获取access_token
-let accessToken = code => axios.get('/WeChat/getAccessToken?code='+code)
+let getUserInfo = code => axios.get('/WeChat/getUserInfo?code='+code)
 //微信里获取js-sdk的signature
 let signature = data => axios.post('/WeChat/signature',data);
 
 
 export {product,prodType,type,productDetail,isUser,insertUser,addDelivery,delivery,delDelivery,
-    cartInfo,createOrder,queryOrder,queryOrderById,updateDelivery,about,addAssess,accessToken,signature};
+    cartInfo,createOrder,queryOrder,queryOrderById,updateDelivery,about,addAssess,getUserInfo,signature};

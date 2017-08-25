@@ -94,7 +94,7 @@ router.post('/', function (req, res) {
     res.end(resMsg);
 });
 
-router.get('/getAccessToken',function (req,res) {
+router.get('/getUserInfo',function (req,res) {
     var code=req.query.code;
     if(code){
         //通过code去获取access_token (网页授权)
@@ -154,6 +154,29 @@ router.post('/signature',(req,res)=>{
         })
     }else{
         res.send('没传入timestamp')
+    }
+})
+//好像突然不用了，我把openid存localstorage了
+router.get('/getOpenid',(req,res)=>{
+    var code=req.query.code;
+    if(code){
+        //通过code去获取access_token (网页授权)
+        request({
+            url: 'https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx22e00a74ae666fe7&secret=bf2e9bfa3da839d38f86dc0ce1cf9cfe&code='+code+'&grant_type=authorization_code',
+            method: "get",
+            json: true
+        }, function (error, response, body) {
+            console.log("access_token's body",log.date());
+            if (!body.errcode && response.statusCode == 200) {
+                res.json(body);
+            } else {
+                console.log(body);
+                res.send(body);
+            }
+        })
+    }else{
+        console.log(code);
+        res.send('木有带参数，肯定不是从微信进来的吧！')
     }
 })
 

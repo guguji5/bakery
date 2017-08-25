@@ -43,7 +43,7 @@
 
 <script>
     import Vue from 'vue'
-    import {isUser,insertUser,accessToken} from '../service'
+    import {isUser,insertUser,getUserInfo} from '../service'
     import { Swipe, SwipeItem } from 'mint-ui';
     import wx from 'weixin-js-sdk'
 
@@ -93,42 +93,47 @@
             }
         },
         mounted(){
-            var code;
-            var param=window.location.search;
-            param=param.substring(1,param.length);
-            var paramArr=param.split('&');
-            paramArr.forEach(function (value,key) {
-                if(value.indexOf('code')==0){
-                    code=value.substr(5);
-                }
-            })
-
-            let that=this;
-
-            if(code){
-                accessToken(code).then(function (res) {
-                    if(!res.data.errcode){
-                        that.$store.commit('setUserInfo',res.data)
-                        //判断当前用户是否在user表中，如果没有则插入一条
-                        isUser(that.openid).then(function (res) {
-                            if(res.data.isThere){
-                                console.log('此用户之前已登陆过本公众号')
-                            }else {
-                                //如果没登陆过，则插入用户表
-                                insertUser(that.fakeData).then(function (res) {
-                                    console.log(res);
-                                })
-                            }
-                        })
-                    }else{
-                        console.log(res.data.errcode);
-                    }
-
-
-                })
-            }else{
-                console.log('木有code')
-            }
+//            var code;
+//            var param=window.location.search;
+//            param=param.substring(1,param.length);
+//            var paramArr=param.split('&');
+//            paramArr.forEach(function (value,key) {
+//                if(value.indexOf('code')==0){
+//                    code=value.substr(5);
+//                }
+//            })
+//
+//            let that=this;
+//
+//            if(code){
+////                通过网页授权进来的
+//                console.log('网页授权')
+//                getUserInfo(code).then(function (res) {
+//                    if(!res.data.errcode){
+//                        that.$store.commit('setUserInfo',res.data)
+//
+//                        //判断当前用户是否在user表中，如果没有则插入一条
+//                        isUser(that.openid).then(function (res) {
+//                            if(res.data.isThere){
+//                                console.log('此用户之前已登陆过本公众号');
+//
+//                            }else {
+//                                //如果没登陆过，则插入用户表
+//                                insertUser(that.fakeData).then(function (res) {
+//                                    console.log(res);
+//                                })
+//                            }
+//                        })
+//                    }else{
+//                        console.log(res.data.errcode);
+//                    }
+//
+//
+//                })
+//            }else{
+////                正常进入，已有localstorage
+//                console.log('已存在localstorage')
+//            }
         }
     }
 </script>
