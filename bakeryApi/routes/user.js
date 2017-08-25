@@ -21,19 +21,19 @@ router.get("/:openid", (req, res) => {
                   isThere:false
                   })
             }else{
-              if(date()-res.subscribe_time>2592000){
-                // 用户存在但是，信息超过一个月，更新信息
-                callback({
-                  message:'openid为'+openid+'的信息过久，更新信息',
-                  isThere:false
-                  })
-              }else{
+              // if(date()-res.subscribe_time>2592000){
+              //   // 用户存在但是，信息超过一个月，更新信息
+              //   callback({
+              //     message:'openid为'+openid+'的信息过久，更新信息',
+              //     isThere:false
+              //     })
+              // }else{
                 callback({
                   data:res,
                   isThere:true
                 });
               }
-            }
+            // }
 
             
        })

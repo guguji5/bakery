@@ -13,7 +13,7 @@ import Vue from 'vue'
 import foot from './components/footer.vue';
 import { Spinner } from 'mint-ui';
 import wx from 'weixin-js-sdk'
-import {isUser,insertUser,getUserInfo,signature} from '../service'
+import {isUser,insertUser,getUserInfo,signature} from './service'
 
 Vue.component(Spinner.name, Spinner);
 export default {
@@ -32,61 +32,11 @@ export default {
       foot
   },
   created(){
-      let that = this;
-      let userinfo = JSON.parse(localStorage.getItem('userinfo'));
-      if(Object.prototype.toString.call(userinfo).indexOf('Object') > -1 && userinfo.openid){
-         //先判断localstorage存在，再去user表里查询
-          console.log('localstorage已存在')
-          //判断当前用户是否在user表中，如果没有则跳转到授权页面
-          isUser(userinfo.openid).then(function (res) {
-              if(res.data.isThere){
-                  console.log('此用户之前已登陆过本公众号');
-                  that.$store.commit('setUserInfo',res.data)
-              }else {
-                  window.location.href ="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx22e00a74ae666fe7&redirect_uri=http://test.xq0213.top&response_type=code&scope=snsapi_userinfo#wechat_redirect"
-              }
-          })
-
-      }
-
-      var code;
-      var param=window.location.search;
-      param=param.substring(1,param.length);
-      var paramArr=param.split('&');
-      paramArr.forEach(function (value,key) {
-          if(value.indexOf('code')==0){
-              code=value.substr(5);
-          }
-      })
-
-      let that=this;
-
-      if(code){
-      // 通过网页授权进来的
-          console.log('网页授权')
-          getUserInfo(code).then(function (res) {
-              if(!res.data.errcode){
-                  that.$store.commit('setUserInfo',res.data);
-                  localStorage.setItem('userinfo',JSON.stringify(res.data));
-                  //微信授权肯定第一次登陆，插入用户表
-                  insertUser(that.fakeData).then(function (res) {
-                      console.log(res);
-                  })
-
-              }else{
-                  console.log(res.data.errcode);
-              }
-
-
-          })
-      }
-
-
-      let param ={
+      let param1 ={
           timestamp:+new Date(),
           url:window.location.href.split('#')[0]
       }
-      signature(param).then(function (res) {
+      signature(param1).then(function (res) {
           console.log(res)
           wx.config({
               debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
@@ -104,7 +54,49 @@ export default {
       document.addEventListener('click',function (e) {
           that.$store.commit('footListFalse')
       })
+      var code;
+      var param=window.location.search;
+      param=param.substring(1,param.length);
+      var paramArr=param.split('&');
+      paramArr.forEach(function (value,key) {
+          if(value.indexOf('code')==0){
+              code=value.substr(5);
+          }
+      })
+      let userinfo = JSON.parse(localStorage.getItem('userinfo'));
+      if(code){
+          // 通过网页授权进来的
+          console.log('网页授权')
+          getUserInfo(code).then(function (res) {
+              if(!res.data.errcode){
+                  that.$store.commit('setUserInfo',res.data);
+                  localStorage.setItem('userinfo',JSON.stringify(res.data));
+                  //微信授权肯定第一次登陆，插入用户表
+                  insertUser(res.data).then(function (res) {
+                      console.log(res);
+                  })
 
+              }else{
+                  console.log(res.data.errcode);
+              }
+          })
+      }else{
+          if(Object.prototype.toString.call(userinfo).indexOf('Object') > -1 && userinfo.openid){
+              //先判断localstorage存在，再去user表里查询
+              console.log('localstorage已存在')
+              //判断当前用户是否在user表中，如果没有则跳转到授权页面
+              isUser(userinfo.openid).then(function (res) {
+                  if(res.data.isThere){
+                      console.log('此用户之前已登陆过本公众号');
+                      that.$store.commit('setUserInfo',res.data)
+                  }else {
+                      window.location.href ="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx22e00a74ae666fe7&redirect_uri=http://test.xq0213.top&response_type=code&scope=snsapi_userinfo#wechat_redirect"
+                  }
+              })
+          }else{
+              window.location.href ="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx22e00a74ae666fe7&redirect_uri=http://test.xq0213.top&response_type=code&scope=snsapi_userinfo#wechat_redirect"
+          }
+      }
       wx.ready(function() {
           console.log('wx.ready');
           wx.onMenuShareAppMessage({
