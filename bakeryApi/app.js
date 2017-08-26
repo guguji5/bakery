@@ -78,7 +78,7 @@ app.enable('trust proxy');
 const port = process.env.PORT || 80
 //linux 必须通过sudo才能启动
 
-app.listen(port, () => {
+app.listen(port,'0.0.0.0' ,() => {
   console.log(`server running @${port}`)
 })
 
