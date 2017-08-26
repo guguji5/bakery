@@ -14,7 +14,7 @@ const access_token = require('../wechat/access_token.js');//用来生成signatur
 const jsapi_ticket = require('../wechat/jsapi_ticket.js')
 const transfer = require('../wechat/unifiedorder.js')
 const nonceStr = require('../wechat/nonceStr.js')
-const sign = require('../wechat/sign_md5');
+const sign_md5 = require('../wechat/sign_md5');
 const key = require('../dbconf/key.json');
 
 
@@ -226,7 +226,7 @@ router.get('/unifiedorder/:openid',(req,res)=>{
                 "signType":"MD5"         //微信签名方式：
                 // "paySign":"70EA570631E4BB79628FBCA90534C63FF7FADD89" //微信签名
             }
-            data.paySign = sign(data).toUpperCase();
+            data.paySign = sign_md5(data).toUpperCase();
             res.json(data);
         }else{
             res.json({
