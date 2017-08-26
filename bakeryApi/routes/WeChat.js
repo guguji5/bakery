@@ -7,7 +7,7 @@ const request = require('request');
 const log = require('../dbconf/log')
 const ObjectId = require('mongodb').ObjectID;
 const async = require("async");
-// const setAccessToken = require('../dbconf/access_token');
+const xmlparse = require('../dbconf/xmlParse');
 // const setRefreshToken = require('../dbconf/refresh_token');
 const sign = require('../wechat/sign.js');//用来生成signature
 const access_token = require('../wechat/access_token.js');//用来生成signature
@@ -212,13 +212,23 @@ router.get('/unifiedorder/:openid',(req,res)=>{
             "content-length":Buffer.byteLength(transfer(data))
         },
     }, function(error, response, body) {
-        res.send('jsjdjs')
-        console.log('body',body)
-        console.log('xml',body.xml.return_code)
-        console.log('error',error)
+        let return_code = xmlparse('return_code',body.toString("utf-8"))
+        let result_code = xmlparse('result_code',body.toString("utf-8"))
+        let prepay_id = xmlparse('prepay_id',body.toString("utf-8"))
+        if(return_code =="SUCCESS" && result_code == "SUCCESS"){
+            res.send(prepay_id);
+        }else{
+            res.json({
+                return_code:return_code,
+                result_code:result_code
+            })
+        }
+        console.log('return_code',return_code);
+        console.log('result_code',result_code);
     })
 
 
 })
+
 
 module.exports = router
