@@ -232,6 +232,8 @@
 <script>
     import {addDelivery,delivery,delDelivery,createOrder,updateDelivery} from '../service';
     import { Toast} from 'mint-ui';
+    import mxpay from '../service/mxpay.js';
+
     export default {
         name: 'pay',
         data () {
@@ -363,7 +365,7 @@
                     console.log(res);
                     Toast('购买成功，请等待收货')
                 })
-            }
+            },
         },
         mounted(){
             let that=this;

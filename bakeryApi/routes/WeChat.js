@@ -159,6 +159,8 @@ router.post('/signature',(req,res)=>{
                     appid:key.appid,
                     timestamp:req.body.timestamp
                 }))
+            }else{
+                res.send(data)
             }
         })
     }else{

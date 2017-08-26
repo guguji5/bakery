@@ -88,7 +88,7 @@ export default {
               isUser(userinfo.openid).then(function (res) {
                   if(res.data.isThere){
                       console.log('此用户之前已登陆过本公众号');
-                      that.$store.commit('setUserInfo',res.data)
+                      that.$store.commit('setUserInfo',res.data.data)
                   }else {
                       window.location.href ="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx22e00a74ae666fe7&redirect_uri=http://test.xq0213.top&response_type=code&scope=snsapi_userinfo#wechat_redirect"
                   }
