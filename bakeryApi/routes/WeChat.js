@@ -214,6 +214,7 @@ router.get('/unifiedorder/:openid',(req,res)=>{
             "content-length":Buffer.byteLength(transfer(data))
         },
     }, function(error, response, body) {
+        console.log(body)
         let xml =body.toString("utf-8")
         let return_code = xmlparse('return_code',xml)
         let result_code = xmlparse('result_code',xml)
