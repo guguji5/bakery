@@ -146,6 +146,10 @@ router.get('/getUserInfo',function (req,res) {
 router.post('/signature',(req,res)=>{
     console.log('req.ip',req.ip)
     console.log('req.ips',req.ips)
+    console.log('ipipiip',req.headers['x-forwarded-for'] ||
+        req.connection.remoteAddress ||
+        req.socket.remoteAddress ||
+        req.connection.socket.remoteAddress);
     if(req.body.url && req.body.timestamp){
         access_token.then(function (data) {
             // console.log(data)
