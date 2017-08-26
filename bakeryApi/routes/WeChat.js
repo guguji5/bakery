@@ -233,9 +233,9 @@ router.get('/unifiedorder/:openid',(req,res)=>{
                 return_code:return_code,
                 result_code:result_code
             })
+            console.log('\nbody',body)
+            console.log('\nerror',error)
         }
-        console.log('return_code',return_code);
-        console.log('result_code',result_code);
     })
 
 

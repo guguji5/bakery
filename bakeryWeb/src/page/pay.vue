@@ -367,9 +367,13 @@
                 })
             },
             test(){
-//                mxpay();
                 unfiedorder(this.$store.state.fakeData.openid).then(function (res) {
                     console.log(res)
+                    if(res.data.paySign){
+                        mxpay(res.data,function (res) {
+                            console.log(res)
+                        })
+                    }
                 })
             }
         },
