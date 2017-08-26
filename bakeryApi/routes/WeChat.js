@@ -12,6 +12,7 @@ const async = require("async");
 const sign = require('../wechat/sign.js');//用来生成signature
 const access_token = require('../wechat/access_token.js');//用来生成signature
 const jsapi_ticket = require('../wechat/jsapi_ticket.js')
+const transfer = require('../wechat/unifiedorder.js')
 const key = require('../dbconf/key.json');
 
 
@@ -143,6 +144,8 @@ router.get('/getUserInfo',function (req,res) {
 })
 
 router.post('/signature',(req,res)=>{
+    console.log('req.ip',req.ip)
+    console.log('req.ips',req.ips)
     if(req.body.url && req.body.timestamp){
         access_token.then(function (data) {
             // console.log(data)
@@ -189,6 +192,35 @@ router.get('/getOpenid',(req,res)=>{
         console.log(code);
         res.send('木有带参数，肯定不是从微信进来的吧！')
     }
+})
+//微信统一下单接口，主要获取那个prepay_id
+router.get('/unifiedorder/:openid',(req,res)=>{
+
+    let data = {
+        attach : '支付测试',
+        body : 'bakery',
+        nonce_str: nonceStr(),
+        openid : req.params.openid,
+        spbill_create_ip : "14.23.150.211", //客户端的 ip
+        total_fee : 1, //商品的价格， 此处需要注意的是这个价格是以分算的， 那么一般是元， 你需要转换为 RMB 的元
+        trade_type : 'JSAPI',
+    }
+
+    request({
+        url: "https://api.mch.weixin.qq.com/pay/unifiedorder",
+        method: "POST",
+        body : transfer(data),
+        headers: {
+            "content-type": "text/xml",
+            "content-length":Buffer.byteLength(transfer(data))
+        },
+    }, function(error, response, body) {
+        res.send(body)
+        console.log('body',body)
+        console.log('error',error)
+    })
+
+
 })
 
 module.exports = router

@@ -73,7 +73,7 @@ app.use('/assessment',require('./routes/assessment'))
 app.get('/test', function (req, res) {
     res.send('GET request to homepage');
 });
-
+app.enable('trust proxy');
 
 const port = process.env.PORT || 80
 //linux 必须通过sudo才能启动

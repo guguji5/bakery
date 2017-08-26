@@ -68,7 +68,10 @@ let addAssess = data =>axios.put('/assessment/insert',data);
 let getUserInfo = code => axios.get('/WeChat/getUserInfo?code='+code)
 //微信里获取js-sdk的signature
 let signature = data => axios.post('/WeChat/signature',data);
+//微信统一下单
+let unfiedorder = openid => axios.get('/WeChat/unifiedorder/'+openid)
 
 
 export {product,prodType,type,productDetail,isUser,insertUser,addDelivery,delivery,delDelivery,
-    cartInfo,createOrder,queryOrder,queryOrderById,updateDelivery,about,addAssess,getUserInfo,signature};
+    cartInfo,createOrder,queryOrder,queryOrderById,updateDelivery,about,addAssess,getUserInfo,
+    signature,unfiedorder};

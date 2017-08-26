@@ -218,7 +218,7 @@
         <div id="total">
             <div class="ui-border-tb ui-txt-c  bg-fff order" style="margin-bottom:0;">
                 <p>{{amount | currency}} + {{fee | currency}}运费 </p>
-                <p class="c-blue">需付{{amount+fee | currency}}</p>
+                <p class="c-blue" @click="test()">需付{{amount+fee | currency}}</p>
             </div>
         </div>
         <!--<ul class=" ui-border-t nav-xd bg-fff p10 payListBox" style="background:#f8f8f8;">-->
@@ -230,9 +230,9 @@
 </template>
 
 <script>
-    import {addDelivery,delivery,delDelivery,createOrder,updateDelivery} from '../service';
+    import {addDelivery,delivery,delDelivery,createOrder,updateDelivery,unfiedorder} from '../service';
     import { Toast} from 'mint-ui';
-    import mxpay from '../service/mxpay.js';
+    import mxpay from '../service/wxpay.js';
 
     export default {
         name: 'pay',
@@ -366,6 +366,12 @@
                     Toast('购买成功，请等待收货')
                 })
             },
+            test(){
+//                mxpay();
+                unfiedorder(this.$store.state.fakeData.openid).then(function (res) {
+                    console.log(res)
+                })
+            }
         },
         mounted(){
             let that=this;
