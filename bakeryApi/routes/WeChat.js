@@ -214,9 +214,10 @@ router.get('/unifiedorder/:openid',(req,res)=>{
             "content-length":Buffer.byteLength(transfer(data))
         },
     }, function(error, response, body) {
-        let return_code = xmlparse('return_code',body.toString("utf-8"))
-        let result_code = xmlparse('result_code',body.toString("utf-8"))
-        let prepay_id = xmlparse('prepay_id',body.toString("utf-8"))
+        let xml =body.toString("utf-8")
+        let return_code = xmlparse('return_code',xml)
+        let result_code = xmlparse('result_code',xml)
+        let prepay_id = xmlparse('prepay_id',xml)
         if(return_code =="SUCCESS" && result_code == "SUCCESS"){
             let data = {
                 "appId":key.appid,     //公众号名称，由商户传入
