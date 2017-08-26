@@ -214,7 +214,7 @@ router.get('/unifiedorder/:openid',(req,res)=>{
             "content-length":Buffer.byteLength(transfer(data))
         },
     }, function(error, response, body) {
-        console.log(body)
+        console.log('\n统一下单接口返回数据：',body)
         let xml =body.toString("utf-8")
         let return_code = xmlparse('return_code',xml)
         let result_code = xmlparse('result_code',xml)
@@ -229,6 +229,7 @@ router.get('/unifiedorder/:openid',(req,res)=>{
                 // "paySign":"70EA570631E4BB79628FBCA90534C63FF7FADD89" //微信签名
             }
             data.paySign = sign_md5(data).toUpperCase();
+            console.log('\n用于微信支付的数据：',data)
             res.json(data);
         }else{
             res.json({
