@@ -213,8 +213,9 @@ router.get('/unifiedorder/:openid',(req,res)=>{
             "content-length":Buffer.byteLength(transfer(data))
         },
     }, function(error, response, body) {
-        res.send(body)
+        res.send('jsjdjs')
         console.log('body',body)
+        console.log('xml',body.xml.return_code)
         console.log('error',error)
     })
 
