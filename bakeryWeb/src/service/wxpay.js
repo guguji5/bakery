@@ -1,4 +1,5 @@
-let onBridgeReady = function (){
+let onBridgeReady = function (data){
+    let data = data;
     WeixinJSBridge.invoke(
         'getBrandWCPayRequest', {
             "appId":"wx2421b1c4370ec43b",     //公众号名称，由商户传入

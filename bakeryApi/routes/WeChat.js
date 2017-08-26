@@ -5,14 +5,16 @@ const d = require('../dbconf/')
 const date = require('../dbconf/date');
 const request = require('request');
 const log = require('../dbconf/log')
+const timeStamp = require('../dbconf/timeStamp')
 const ObjectId = require('mongodb').ObjectID;
 const async = require("async");
 const xmlparse = require('../dbconf/xmlParse');
-// const setRefreshToken = require('../dbconf/refresh_token');
 const sign = require('../wechat/sign.js');//用来生成signature
 const access_token = require('../wechat/access_token.js');//用来生成signature
 const jsapi_ticket = require('../wechat/jsapi_ticket.js')
 const transfer = require('../wechat/unifiedorder.js')
+const nonceStr = require('../wechat/nonceStr.js')
+const sign = require('../wechat/sign_md5');
 const key = require('../dbconf/key.json');
 
 
@@ -216,7 +218,16 @@ router.get('/unifiedorder/:openid',(req,res)=>{
         let result_code = xmlparse('result_code',body.toString("utf-8"))
         let prepay_id = xmlparse('prepay_id',body.toString("utf-8"))
         if(return_code =="SUCCESS" && result_code == "SUCCESS"){
-            res.send(prepay_id);
+            let data = {
+                "appId":key.appid,     //公众号名称，由商户传入
+                "timeStamp":timeStamp(),         //时间戳，自1970年以来的秒数
+                "nonceStr":nonceStr(), //随机串
+                "package":"prepay_id="+prepay_id,
+                "signType":"MD5"         //微信签名方式：
+                // "paySign":"70EA570631E4BB79628FBCA90534C63FF7FADD89" //微信签名
+            }
+            data.paySign = sign(data).toUpperCase();
+            res.json(data);
         }else{
             res.json({
                 return_code:return_code,
