@@ -4,7 +4,7 @@ cd bakeryWeb
 npm run build
 cd ..
 #密码不能通过github传
-scp bakeryApi/dbconf/key.json ubuntu@52.15.185.161:/home/ubuntu/bakery/bakeryApi/dbconf
+#scp bakeryApi/dbconf/key.json ubuntu@52.15.185.161:/home/ubuntu/bakery/bakeryApi/dbconf
 rm bakeryApi/public/index.html
 rm bakeryApi/public/static -r
 cp bakeryWeb/dist/index.html bakeryApi/public
