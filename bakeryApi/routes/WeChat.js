@@ -203,13 +203,14 @@ router.get('/unifiedorder/:openid',(req,res)=>{
         total_fee : 1, //商品的价格， 此处需要注意的是这个价格是以分算的， 那么一般是元， 你需要转换为 RMB 的元
         trade_type : 'JSAPI',
     }
+    var transferData = transfer(data);
     request({
         url: "https://api.mch.weixin.qq.com/pay/unifiedorder",
         method: "POST",
-        body : transfer(data),
+        body : transferData,
         headers: {
             "content-type": "text/xml",
-            "content-length":Buffer.byteLength(transfer(data))
+            "content-length":Buffer.byteLength(transferData)
         },
     }, function(error, response, body) {
         console.log('\n统一下单接口返回数据：',body)
