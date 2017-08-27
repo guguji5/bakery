@@ -32,7 +32,9 @@ let data = {
 // })
 var transfer = function (param) {
     Object.assign(data,param);
+    console.log('\n待签名数据:',data)
     data.sign = sign(data).toUpperCase();
+    console.log('\n签名：',data.sign);
     var body = '<xml> ' +
         '<appid>'+data.appid+'</appid> ' +
         '<attach>'+data.attach+'</attach> ' +
@@ -47,7 +49,7 @@ var transfer = function (param) {
         '<trade_type>'+data.trade_type+'</trade_type> ' +
         '<sign>'+data.sign+'</sign> ' +
         '</xml>';
-    console.log(body);
+    console.log('\n签名后待发送的数据',body)
     return body;
 }
 module.exports = transfer;
