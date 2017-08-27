@@ -295,7 +295,7 @@ router.post('/notify', function (req, res) {
                         console.log(err)
                         callback(err);
                     }else{
-                        console.log(results)
+                        // console.log(results)
                         callback(results)
                     }
                 })
