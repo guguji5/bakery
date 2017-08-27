@@ -250,6 +250,20 @@ router.post('/unifiedorder',(req,res)=>{
 
 
 })
+//微信支付成功以后，通知地址，会把参数带过来
+router.post('/notify', function (req, res) {
 
+    res.writeHead(200, {'Content-Type': 'application/xml'});
+
+    var data = req.body.xml;
+    console.log('notify',req.body)
+    console.log('notify data',data)
+
+    var resMsg = '<xml>'+
+        '<return_code><![CDATA[SUCCESS]]></return_code>'+
+        '<return_msg><![CDATA[OK]]></return_msg>'+
+        '</xml>';
+    res.end(resMsg);
+});
 
 module.exports = router

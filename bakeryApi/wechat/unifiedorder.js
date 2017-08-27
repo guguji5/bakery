@@ -12,7 +12,7 @@ var transfer = function (param) {
         body : '',
         mch_id : key.mch_id,
         nonce_str: nonceStr(),
-        notify_url : "http://test.xq0213.top/#/user",// 微信付款后的回调地址
+        notify_url : "http://test.xq0213.top/WeChat/notify",// 微信付款后的回调地址
         openid : "",
         out_trade_no :'',//new Date().getTime(), //订单号
         spbill_create_ip : "", //客户端的 ip

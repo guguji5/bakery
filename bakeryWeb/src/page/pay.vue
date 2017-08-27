@@ -363,6 +363,7 @@
                 data.goods=this.goods;
                 data.delivery=this.delivery;
                 data.userId=this.$store.state.fakeData.openid;
+                let that = this;
                 createOrder(data).then(function (res) {
                     console.log(res);
                     if(res.data.insertedCount==1){
@@ -374,7 +375,7 @@
                         let param = {
                             openid:data.userId,
                             out_trade_no:res.data.insertedIds[0],//新生成的订单号
-                            total_fee:data.fee,
+                            total_fee:100*(that.amount+that.fee),
                             attach:'test',
                             body:good.join(',')
                         }
@@ -389,8 +390,12 @@
                                     "signType": response.data.signType,         //微信签名方式：
                                     "paySign": response.data.paySign //微信签名
                                 }, function (res) {
+                                    //成功以后的回调
                                     alert(res);
                                     Toast('购买成功，请等待收货');
+                                },function (res) {
+                                    //取消以后的回调
+                                    alert('哎呦取消了啊')
                                 })
                             }
                         })
