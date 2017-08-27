@@ -8,14 +8,14 @@ var transfer = function (param) {
     //统一下单的数据
     let data = {
         appid : key.appid,
-        attach : '支付测试',
-        body : 'bakery',
+        attach : '',
+        body : '',
         mch_id : key.mch_id,
         nonce_str: nonceStr(),
         notify_url : "http://test.xq0213.top/#/user",// 微信付款后的回调地址
-        openid : "ob0ux1cURFQAk5WsWtmO-jyLKKBs",
-        out_trade_no : new Date().getTime() ,//new Date().getTime(), //订单号
-        spbill_create_ip : "14.23.150.211", //客户端的 ip
+        openid : "",
+        out_trade_no :'',//new Date().getTime(), //订单号
+        spbill_create_ip : "", //客户端的 ip
         total_fee : 1, //商品的价格， 此处需要注意的是这个价格是以分算的， 那么一般是元， 你需要转换为 RMB 的元
         trade_type : 'JSAPI',
     }

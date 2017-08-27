@@ -194,51 +194,59 @@ router.get('/getOpenid',(req,res)=>{
     }
 })
 //微信统一下单接口，主要获取那个prepay_id
-router.get('/unifiedorder/:openid',(req,res)=>{
-    let data = {
-        attach : '支付测试',
-        body : 'bakery',
-        openid : req.params.openid,
-        spbill_create_ip : req['ip'], //客户端的 ip
-        total_fee : 1, //商品的价格， 此处需要注意的是这个价格是以分算的， 那么一般是元， 你需要转换为 RMB 的元
-        trade_type : 'JSAPI',
-    }
-    var transferData = transfer(data);
-    request({
-        url: "https://api.mch.weixin.qq.com/pay/unifiedorder",
-        method: "POST",
-        body : transferData,
-        headers: {
-            "content-type": "text/xml",
-            "content-length":Buffer.byteLength(transferData)
-        },
-    }, function(error, response, body) {
-        console.log('\n统一下单接口返回数据：',body)
-        let xml =body.toString("utf-8")
-        let return_code = xmlparse('return_code',xml)
-        let result_code = xmlparse('result_code',xml)
-        let prepay_id = xmlparse('prepay_id',xml)
-        if(return_code =="SUCCESS" && result_code == "SUCCESS"){
-            let data = {
-                "appId":key.appid,     //公众号名称，由商户传入
-                "timeStamp":timeStamp(),//时间戳，自1970年以来的秒数
-                "nonceStr":nonceStr(), //随机串
-                "package":"prepay_id="+prepay_id,
-                "signType":"MD5"         //微信签名方式：
-                // "paySign":"70EA570631E4BB79628FBCA90534C63FF7FADD89" //微信签名
-            }
-            data.paySign = sign_md5(data).toUpperCase();
-            console.log('\n用于微信支付的数据：',data)
-            res.json(data);
-        }else{
-            res.json({
-                return_code:return_code,
-                result_code:result_code
-            })
-            console.log('\nbody',body)
-            console.log('\nerror',error)
+router.post('/unifiedorder',(req,res)=>{
+    if(req.body.openid && req.body.out_trade_no && req.body.total_fee && req.body.body && req.body.attach){
+
+        let data = {
+            attach : req.body.attach,
+            body : req.body.body,
+            openid : req.params.openid,
+            spbill_create_ip : req['ip'], //客户端的 ip
+            out_trade_no : req.body.out_trade_no ,//new Date().getTime(), //订单号
+            total_fee : req.body.total_fee //商品的价格， 此处需要注意的是这个价格是以分算的， 那么一般是元， 你需要转换为 RMB 的元
         }
-    })
+
+        var transferData = transfer(data);
+        request({
+            url: "https://api.mch.weixin.qq.com/pay/unifiedorder",
+            method: "POST",
+            body : transferData,
+            headers: {
+                "content-type": "text/xml",
+                "content-length":Buffer.byteLength(transferData)
+            },
+        }, function(error, response, body) {
+            console.log('\n统一下单接口返回数据：',body)
+            let xml =body.toString("utf-8")
+            let return_code = xmlparse('return_code',xml)
+            let result_code = xmlparse('result_code',xml)
+            let prepay_id = xmlparse('prepay_id',xml)
+            if(return_code =="SUCCESS" && result_code == "SUCCESS"){
+                let data = {
+                    "appId":key.appid,     //公众号名称，由商户传入
+                    "timeStamp":timeStamp(),//时间戳，自1970年以来的秒数
+                    "nonceStr":nonceStr(), //随机串
+                    "package":"prepay_id="+prepay_id,
+                    "signType":"MD5"         //微信签名方式：
+                    // "paySign":"70EA570631E4BB79628FBCA90534C63FF7FADD89" //微信签名
+                }
+                data.paySign = sign_md5(data).toUpperCase();
+                console.log('\n用于微信支付的数据：',data)
+                res.json(data);
+            }else{
+                res.json({
+                    return_code:return_code,
+                    result_code:result_code
+                })
+                console.log('\nbody',body)
+                console.log('\nerror',error)
+            }
+        })
+    }else{
+        res.send('openid,out_trade_no,total_fee,body,attach这三个字段至少得有吧')
+    }
+
+
 
 
 })

@@ -145,7 +145,7 @@
                 <label>留&nbsp;&nbsp;&nbsp;&nbsp;言</label>
                 <textarea placeholder="几点送货上门方便？" maxlength="200"  class="ui-textarea" style="height:45px;" v-model="remark"></textarea>
             </li>
-            <li @click="test1()">运费 <span class="r shipping_fee">{{fee | currency}}</span></li>
+            <li>运费 <span class="r shipping_fee">{{fee | currency}}</span></li>
             <li class=" mb10"><!--<a href="javascript:void(0);" class="c-999">不包含商品</a>--></li>
             <!-- <li class="mb10">合计<span class="r c-blue">￥84.00</span> </li> -->
         </ul>
@@ -365,11 +365,49 @@
                 data.userId=this.$store.state.fakeData.openid;
                 createOrder(data).then(function (res) {
                     console.log(res);
-                    Toast('购买成功，请等待收货')
+                    if(res.data.insertedCount==1){
+                        console.log('\n已成功生成订单，现在开始调起微信支付')
+/**************************这里调起微信支付**************************************************************/
+                        let good = data.goods.map(function (value) {
+                                return value.name;
+                            })
+                        let data = {
+                            openid:data.userId,
+                            out_trade_no:res.data.insertedIds[0],//新生成的订单号
+                            total_fee:data.fee,
+                            attach:'test',
+                            body:good.join(',')
+                        }
+                        unfiedorder(data).then(function (response) {
+                            console.log(response)
+                            if (response.data.paySign) {
+                                mxpay({
+                                    "appId": response.data.appId,     //公众号名称，由商户传入
+                                    "timeStamp": response.data.timeStamp,         //时间戳，自1970年以来的秒数
+                                    "nonceStr": response.data.nonceStr, //随机串
+                                    "package": response.data.package,
+                                    "signType": response.data.signType,         //微信签名方式：
+                                    "paySign": response.data.paySign //微信签名
+                                }, function (res) {
+                                    alert(res);
+                                    Toast('购买成功，请等待收货');
+                                })
+                            }
+                        })
+/********************************************************************************************/
+                    }
+
                 })
             },
             test(){
-                unfiedorder(this.$store.state.fakeData.openid).then(function (res) {
+                let data = {
+                    openid:this.$store.state.fakeData.openid,
+                    out_trade_no:'',
+                    total_fee:1,
+                    attach:'test',
+                    body:'body'
+                }
+                unfiedorder(data).then(function (res) {
                     console.log(res)
                     if(res.data.paySign){
                         mxpay({
@@ -383,22 +421,6 @@
                             console.log(res)
                         })
                     }
-                })
-            },
-            test1(){
-                unfiedorder(this.$store.state.fakeData.openid).then(function (res) {
-                    console.log(res)
-                    wx.chooseWXPay({
-                        timeStamp: res.data.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
-                        nonceStr: res.data.nonceStr, // 支付签名随机串，不长于 32 位
-                        package: res.data.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
-                        signType: res.data.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
-                        paySign: res.data.paySign, // 支付签名
-                        success: function (res) {
-                            // 支付成功后的回调函数
-                            alert(res)
-                        }
-                    });
                 })
             }
         },

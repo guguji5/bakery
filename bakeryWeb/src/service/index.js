@@ -69,7 +69,7 @@ let getUserInfo = code => axios.get('/WeChat/getUserInfo?code='+code)
 //微信里获取js-sdk的signature
 let signature = data => axios.post('/WeChat/signature',data);
 //微信统一下单
-let unfiedorder = openid => axios.get('/WeChat/unifiedorder/'+openid)
+let unfiedorder = data => axios.post('/WeChat/unifiedorder',data)
 
 
 export {product,prodType,type,productDetail,isUser,insertUser,addDelivery,delivery,delDelivery,
