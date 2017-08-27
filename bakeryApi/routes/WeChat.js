@@ -202,6 +202,7 @@ router.get('/unifiedorder/:openid',(req,res)=>{
         openid : req.params.openid,
         spbill_create_ip : req['ip'], //客户端的 ip
         total_fee : 1, //商品的价格， 此处需要注意的是这个价格是以分算的， 那么一般是元， 你需要转换为 RMB 的元
+        out_trade_no : new Date().getTime(),
         trade_type : 'JSAPI',
     }
 
@@ -222,7 +223,7 @@ router.get('/unifiedorder/:openid',(req,res)=>{
         if(return_code =="SUCCESS" && result_code == "SUCCESS"){
             let data = {
                 "appId":key.appid,     //公众号名称，由商户传入
-                "timeStamp":timeStamp(),         //时间戳，自1970年以来的秒数
+                "timeStamp":timeStamp(),//时间戳，自1970年以来的秒数
                 "nonceStr":nonceStr(), //随机串
                 "package":"prepay_id="+prepay_id,
                 "signType":"MD5"         //微信签名方式：
