@@ -256,7 +256,7 @@ router.post('/notify', function (req, res) {
     console.log('notify data',data)
     let sign = data.sign;
     delete data.sign;
-    if(sign === sign_md5(data)){
+    if(sign === sign_md5(data).toUpperCase()){
         //  签名过才算可信
         if(data.result_code=="SUCCESS" && data.mch_id == key.mch_id && data.result_code == 'SUCCESS'){
             //  你的判断这次收款是进到咱们的账户了，再拿out_trade_no去订单表里根据id判断这一单的金额是否正确
