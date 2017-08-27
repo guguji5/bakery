@@ -3,34 +3,22 @@ const request = require('request');
 const nonceStr = require('./nonceStr');
 const sign = require('./sign_md5');
 const key = require('../dbconf/key.json')
-//统一下单的数据
-let data = {
-    appid : key.appid,
-    attach : '支付测试',
-    body : 'bakery',
-    mch_id : key.mch_id,
-    nonce_str: nonceStr(),
-    notify_url : "http://test.xq0213.top/#/user",// 微信付款后的回调地址
-    openid : "ob0ux1cURFQAk5WsWtmO-jyLKKBs",
-    out_trade_no : new Date().getTime() ,//new Date().getTime(), //订单号
-    spbill_create_ip : "14.23.150.211", //客户端的 ip
-    total_fee : 1, //商品的价格， 此处需要注意的是这个价格是以分算的， 那么一般是元， 你需要转换为 RMB 的元
-    trade_type : 'JSAPI',
-}
 
-// request({
-//     url: "https://api.mch.weixin.qq.com/pay/unifiedorder",
-//     method: "POST",
-//     body : body,
-//     headers: {
-//         "content-type": "text/xml",
-//         "content-length":Buffer.byteLength(body)
-//     },
-// }, function(error, response, body) {
-//     console.log('body',body)
-//     console.log('error',error)
-// })
 var transfer = function (param) {
+    //统一下单的数据
+    let data = {
+        appid : key.appid,
+        attach : '支付测试',
+        body : 'bakery',
+        mch_id : key.mch_id,
+        nonce_str: nonceStr(),
+        notify_url : "http://test.xq0213.top/#/user",// 微信付款后的回调地址
+        openid : "ob0ux1cURFQAk5WsWtmO-jyLKKBs",
+        out_trade_no : new Date().getTime() ,//new Date().getTime(), //订单号
+        spbill_create_ip : "14.23.150.211", //客户端的 ip
+        total_fee : 1, //商品的价格， 此处需要注意的是这个价格是以分算的， 那么一般是元， 你需要转换为 RMB 的元
+        trade_type : 'JSAPI',
+    }
     Object.assign(data,param);
     console.log('\n待签名数据:',data)
     data.sign = sign(data).toUpperCase();
