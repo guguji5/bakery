@@ -371,14 +371,14 @@
                         let good = data.goods.map(function (value) {
                                 return value.name;
                             })
-                        let data = {
+                        let param = {
                             openid:data.userId,
                             out_trade_no:res.data.insertedIds[0],//新生成的订单号
                             total_fee:data.fee,
                             attach:'test',
                             body:good.join(',')
                         }
-                        unfiedorder(data).then(function (response) {
+                        unfiedorder(param).then(function (response) {
                             console.log(response)
                             if (response.data.paySign) {
                                 mxpay({
@@ -402,7 +402,7 @@
             test(){
                 let data = {
                     openid:this.$store.state.fakeData.openid,
-                    out_trade_no:'',
+                    out_trade_no:'45768',
                     total_fee:1,
                     attach:'test',
                     body:'body'

@@ -200,7 +200,7 @@ router.post('/unifiedorder',(req,res)=>{
         let data = {
             attach : req.body.attach,
             body : req.body.body,
-            openid : req.params.openid,
+            openid : req.body.openid,
             spbill_create_ip : req['ip'], //客户端的 ip
             out_trade_no : req.body.out_trade_no ,//new Date().getTime(), //订单号
             total_fee : req.body.total_fee //商品的价格， 此处需要注意的是这个价格是以分算的， 那么一般是元， 你需要转换为 RMB 的元
