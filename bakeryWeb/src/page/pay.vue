@@ -438,10 +438,10 @@
                     that.amount+=value.piece*value.price;
                 })
             }
-
-            if(that.amount<20){
+            //具体运费逻辑后期再补
+      /*      if(that.amount<20){
                 that.fee=10;
-            }
+            }*/
 
         }
     }
