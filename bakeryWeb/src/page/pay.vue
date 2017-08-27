@@ -145,7 +145,7 @@
                 <label>留&nbsp;&nbsp;&nbsp;&nbsp;言</label>
                 <textarea placeholder="几点送货上门方便？" maxlength="200"  class="ui-textarea" style="height:45px;" v-model="remark"></textarea>
             </li>
-            <li>运费 <span class="r shipping_fee">{{fee | currency}}</span></li>
+            <li @click="test1()">运费 <span class="r shipping_fee">{{fee | currency}}</span></li>
             <li class=" mb10"><!--<a href="javascript:void(0);" class="c-999">不包含商品</a>--></li>
             <!-- <li class="mb10">合计<span class="r c-blue">￥84.00</span> </li> -->
         </ul>
@@ -372,25 +372,34 @@
                 unfiedorder(this.$store.state.fakeData.openid).then(function (res) {
                     console.log(res)
                     if(res.data.paySign){
-//                        mxpay(res.data,function (res) {
-//                            console.log(res)
-//                        })
-
-                        wx.chooseWXPay({
-                            timestamp: res.data.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
-                            nonceStr: res.data.nonceStr, // 支付签名随机串，不长于 32 位
-                            package: res.data.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
-                            signType: res.data.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
-                            paySign: res.data.paySign, // 支付签名
-                            success: function (res) {
-                                // 支付成功后的回调函数
-                                alert(res)
-                            }
-                        });
+                        mxpay({
+                            "appId":res.data.appId,     //公众号名称，由商户传入
+                            "timeStamp":res.data.timeStamp,         //时间戳，自1970年以来的秒数
+                            "nonceStr":res.data.nonceStr, //随机串
+                            "package":res.data.package,
+                            "signType":res.data.signType,         //微信签名方式：
+                            "paySign":res.data.paySign //微信签名
+                        },function (res) {
+                            console.log(res)
+                        })
                     }
                 })
-
-
+            },
+            test1(){
+                unfiedorder(this.$store.state.fakeData.openid).then(function (res) {
+                    console.log(res)
+                    wx.chooseWXPay({
+                        timeStamp: res.data.timeStamp, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+                        nonceStr: res.data.nonceStr, // 支付签名随机串，不长于 32 位
+                        package: res.data.package, // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=***）
+                        signType: res.data.signType, // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+                        paySign: res.data.paySign, // 支付签名
+                        success: function (res) {
+                            // 支付成功后的回调函数
+                            alert(res)
+                        }
+                    });
+                })
             }
         },
         mounted(){

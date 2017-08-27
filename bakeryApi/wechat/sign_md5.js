@@ -25,6 +25,7 @@ var raw = function (args) {
 var sign = function (param) {
 
     var string = raw(param)+"&key="+key.apiKey;
+    console.log('md5拼成的数据：',string)
     const crypto = require('crypto');
     const hash = crypto.createHash('md5');
 
