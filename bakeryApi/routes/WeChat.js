@@ -195,17 +195,16 @@ router.get('/getOpenid',(req,res)=>{
 })
 //微信统一下单接口，主要获取那个prepay_id
 router.get('/unifiedorder/:openid',(req,res)=>{
-
     let data = {
         attach : '支付测试',
         body : 'bakery',
         openid : req.params.openid,
+        nonce_str: nonceStr(),
         spbill_create_ip : req['ip'], //客户端的 ip
         total_fee : 1, //商品的价格， 此处需要注意的是这个价格是以分算的， 那么一般是元， 你需要转换为 RMB 的元
         out_trade_no : new Date().getTime(),
         trade_type : 'JSAPI',
     }
-
     request({
         url: "https://api.mch.weixin.qq.com/pay/unifiedorder",
         method: "POST",
