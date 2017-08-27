@@ -200,7 +200,7 @@ router.get('/unifiedorder/:openid',(req,res)=>{
         attach : '支付测试',
         body : 'bakery',
         openid : req.params.openid,
-        spbill_create_ip : req.ip, //客户端的 ip
+        spbill_create_ip : req['ip'], //客户端的 ip
         total_fee : 1, //商品的价格， 此处需要注意的是这个价格是以分算的， 那么一般是元， 你需要转换为 RMB 的元
         trade_type : 'JSAPI',
     }

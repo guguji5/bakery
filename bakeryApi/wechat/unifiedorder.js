@@ -47,7 +47,7 @@ var transfer = function (param) {
         '<trade_type>'+data.trade_type+'</trade_type> ' +
         '<sign>'+data.sign+'</sign> ' +
         '</xml>';
-
+    console.log(body);
     return body;
 }
 module.exports = transfer;
