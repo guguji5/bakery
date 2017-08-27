@@ -261,35 +261,58 @@ router.post('/notify', function (req, res) {
         if(data.result_code=="SUCCESS" && data.mch_id == key.mch_id && data.result_code == 'SUCCESS'){
             //  你的判断这次收款是进到咱们的账户了，再拿out_trade_no去订单表里根据id判断这一单的金额是否正确
             var findOrder = function(db, callback) {
-                db.collection('order').findOne( {
-                    "_id":new ObjectId(data.out_trade_no)
-                },{ fee: 1, goods: 1}, function(err, res) {
-                    d.assert.equal(err, null);
-                    console.log("\nproduct infomation has found success",log.date());
-                    callback(res)
-                });
-
+                async.auto({
+                    query:function (cb) {
+                        db.collection('order').findOne( {
+                            "_id":new ObjectId(data.out_trade_no)
+                        },{ fee: 1, goods: 1}, function(err, res) {
+                            d.assert.equal(err, null);
+                            console.log("\nproduct infomation has found success",log.date());
+                            let amount=res.fee;
+                            res.goods.forEach(function (value,key) {
+                                amount+=value.price*value.piece;
+                            });
+                            if(100*amount==data.total_fee){
+                                cb(null,res)
+                            }else{
+                                cb(res)
+                            }
+                        });
+                    },
+                    set:['query',function (result,cb) {
+                        db.collection('order').update( {
+                            "_id":new ObjectId(data.out_trade_no)
+                        },{
+                            $set:{status:true}
+                        }, function(err, result) {
+                            d.assert.equal(err, null);
+                            console.log("\norder'status has updated to true",log.date());
+                            cb(null,result);
+                        });
+                    }]
+                },function (err, results) {
+                    if(err){
+                        console.log(err)
+                        callback(err);
+                    }else{
+                        console.log(results)
+                        callback(results)
+                    }
+                })
             };
 
             d.MongoClient.connect(d.url, function(err, db) {
                 d.assert.equal(null, err);
                 findOrder(db,function(data) {
                     db.close();
-                    let amount=data.fee;
-                    data.goods.forEach(function (value,key) {
-                        amount+=value.price*value.piece;
-                    });
-                    console.log('amount',amount,'\ntotal_fee',data.total_fee)
-                    if(100*amount==data.total_fee){
-                        res.writeHead(200, {'Content-Type': 'application/xml'});
-                        var resMsg = '<xml>'+
-                            '<return_code><![CDATA[SUCCESS]]></return_code>'+
-                            '<return_msg><![CDATA[OK]]></return_msg>'+
-                            '</xml>';
-                        res.end(resMsg);
-                    }else{
-                        res.send('金额不对')
-                    }
+                    console.log('最后最后的data',data)
+                    res.writeHead(200, {'Content-Type': 'application/xml'});
+                    var resMsg = '<xml>'+
+                        '<return_code><![CDATA[SUCCESS]]></return_code>'+
+                        '<return_msg><![CDATA[OK]]></return_msg>'+
+                        '</xml>';
+                    res.end(resMsg);
+
                 });
             });
         }else{
