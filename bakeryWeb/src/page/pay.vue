@@ -372,6 +372,7 @@
                         let good = data.goods.map(function (value) {
                                 return value.name;
                             })
+                        // 调用统一下单接口的参数
                         let param = {
                             openid:data.userId,
                             out_trade_no:res.data.insertedIds[0],//新生成的订单号

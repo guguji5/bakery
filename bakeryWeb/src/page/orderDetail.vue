@@ -42,7 +42,7 @@
                 <li class="t">
                     <div class="ui-flex-pack-end btn" style="padding:0px;margin-bottom:45px">
                         <a class="radius5" v-show="data.status">再次购买</a>
-                        <a class="radius5" v-show="!data.status">去付款</a>
+                        <a class="radius5" v-show="!data.status" @click="pay()">去付款</a>
 
                         <a class="radius5" v-show="data.status && !data.assessment" @click="jump">添加评价</a>
                         <a class="radius5" v-show="!data.status">取消订单</a>
@@ -56,7 +56,7 @@
 </template>
 
 <script>
-    import {queryOrderById} from '../service'
+    import {queryOrderById,unfiedorder} from '../service'
     export default {
         name: 'orderDetail',
         data () {
@@ -73,6 +73,44 @@
             jump(){
                 this.$router.push({ name: 'assessment', params: { id: this.$route.params.id}})
             },
+            pay(){
+                console.log(this.data)
+
+
+                let good = this.data.goods.map(function (value) {
+                    return value.name;
+                })
+                // 调用统一下单接口的参数
+                let param = {
+                    openid:this.data.userId,
+                    out_trade_no:this.data._id,//新生成的订单号
+                    total_fee:100*(this.data.amount+this.data.fee),
+                    attach:'test',
+                    body:good.join(',')
+                }
+                unfiedorder(param).then(function (response) {
+                    console.log(response)
+                    if (response.data.paySign) {
+                        mxpay({
+                            "appId": response.data.appId,     //公众号名称，由商户传入
+                            "timeStamp": response.data.timeStamp,         //时间戳，自1970年以来的秒数
+                            "nonceStr": response.data.nonceStr, //随机串
+                            "package": response.data.package,
+                            "signType": response.data.signType,         //微信签名方式：
+                            "paySign": response.data.paySign //微信签名
+                        }, function (res) {
+                            //成功以后的回调
+                            alert(res);
+                            Toast('购买成功，请等待收货');
+                        },function (res) {
+                            //取消以后的回调
+                            alert('哎呦取消了啊')
+                        })
+                    }
+                })
+
+
+            }
         },
         mounted(){
             let that=this;
