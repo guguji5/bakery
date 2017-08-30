@@ -57,6 +57,8 @@
 
 <script>
     import {queryOrderById,unfiedorder} from '../service'
+    import mxpay from '../service/wxpay.js';
+
     export default {
         name: 'orderDetail',
         data () {
@@ -104,6 +106,7 @@
                             Toast('购买成功，请等待收货');
                         },function (res) {
                             //取消以后的回调
+                            alert(res.err_msg)
                             alert('哎呦取消了啊')
                         })
                     }

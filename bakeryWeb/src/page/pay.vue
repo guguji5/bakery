@@ -233,7 +233,6 @@
     import {addDelivery,delivery,delDelivery,createOrder,updateDelivery,unfiedorder} from '../service';
     import { Toast} from 'mint-ui';
     import mxpay from '../service/wxpay.js';
-    import wx from 'weixin-js-sdk'
 
     console.log(mxpay)
     export default {
