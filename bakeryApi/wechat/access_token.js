@@ -3,7 +3,7 @@ const request = require('request');
 const access = require('./setAccess_token')
 const key = require('../dbconf/key.json');
 const log = require('../dbconf/log.js');
-let promise = new Promise(function(resolve, reject) {
+let promise = () => new Promise(function(resolve, reject) {
     //应该存起来，先去哪缓存的。
     access.queryAccessToken(function (data) {
         if(data.access_token){
