@@ -147,7 +147,7 @@ router.get('/getUserInfo',function (req,res) {
 
 router.post('/signature',(req,res)=>{
     if(req.body.url && req.body.timestamp){
-        access_token.then(function (data) {
+        access_token().then(function (data) {
             // console.log(data)
             return jsapi_ticket(data.access_token)
         }).then(function (data) {
