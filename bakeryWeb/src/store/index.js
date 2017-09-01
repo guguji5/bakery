@@ -8,7 +8,7 @@ const store = new Vuex.Store({
         fakeData:{
             "subscribe": 1,
             "openid": "o6_bmjrPTlm6_2sgVt7hMZOPfL2p",
-            "nickname": "Band",
+            "nickname": "",
             "sex": 1,
             "language": "zh_CN",
             "city": "广州",

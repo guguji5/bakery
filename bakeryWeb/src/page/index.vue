@@ -3,7 +3,8 @@
         <header id="header-index">
             <div class="header_l"> <a class="logo" @click="jump"> 首页 </a> <span class="city">成安县 </span>    </div>
             <div class="header_r">
-                <a @click="jump('user')">{{fakeData.nickname}}</a>
+                <a @click="jump('user')" v-show="fakeData.nickname!=''">{{fakeData.nickname}}</a>
+                <a v-show="fakeData.nickname==''">未登陆</a>
                 丨<a @click="jump('cart')">购物车</a>
             </div>
         </header>
