@@ -28,7 +28,8 @@
 
             <div class="nav">
                 <ul class="nav-list">
-                    <li><a @click="test()"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien3awmr2j20qo0cign2.jpg"> </a></li>
+                    <!--test方法可以调用相册-->
+                    <li><a @click="jump()"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien3awmr2j20qo0cign2.jpg"> </a></li>
                     <li><a @click="jump()"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien43k3bwj20qo0citab.jpg"> </a></li>
                     <li><a @click="jump()"> <img src="http://ww1.sinaimg.cn/large/7ec3646fgy1fien4xp7ctj20ro0cnjsb.jpg"> </a></li>
                 </ul>
