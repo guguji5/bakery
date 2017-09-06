@@ -49,81 +49,81 @@ export default {
       });
 
   },
-//  mounted(){
-//      var that = this;
-//      document.addEventListener('click',function (e) {
-//          that.$store.commit('footListFalse')
-//      })
-//      var code;
-//      var param=window.location.search;
-//      param=param.substring(1,param.length);
-//      var paramArr=param.split('&');
-//      paramArr.forEach(function (value,key) {
-//          if(value.indexOf('code')==0){
-//              code=value.substr(5);
-//          }
-//      })
-//      let userinfo = JSON.parse(localStorage.getItem('userinfo'));
-//      if(code){
-//          // 通过网页授权进来的
-//          console.log('网页授权')
-//          getUserInfo(code).then(function (res) {
-//              if(!res.data.errcode){
-//                  that.$store.commit('setUserInfo',res.data);
-//                  localStorage.setItem('userinfo',JSON.stringify(res.data));
-//                  //微信授权肯定第一次登陆，插入用户表
-//                  insertUser(res.data).then(function (res) {
-//                      console.log(res);
-//                  })
-//
-//              }else{
-//                  console.log(res.data.errcode);
-//              }
-//          })
-//      }else{
-//          if(Object.prototype.toString.call(userinfo).indexOf('Object') > -1 && userinfo.openid){
-//              //先判断localstorage存在，再去user表里查询
-//              console.log('localstorage已存在')
-//              //判断当前用户是否在user表中，如果没有则跳转到授权页面
-//              isUser(userinfo.openid).then(function (res) {
-//                  if(res.data.isThere){
-//                      console.log('此用户之前已登陆过本公众号');
-//                      that.$store.commit('setUserInfo',res.data.data)
-//                  }else {
-//                      window.location.href ="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx22e00a74ae666fe7&redirect_uri=http://test.xq0213.top&response_type=code&scope=snsapi_userinfo#wechat_redirect"
-//                  }
-//              })
-//          }else{
-//              window.location.href ="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx22e00a74ae666fe7&redirect_uri=http://test.xq0213.top&response_type=code&scope=snsapi_userinfo#wechat_redirect"
-//          }
-//      }
-//      wx.ready(function() {
-//          console.log('wx.ready');
-//          wx.onMenuShareAppMessage({
-//              title: 'heiheihei', // 分享标题
-//              desc: 'This is a test!', // 分享描述
-//              link: 'test.xq0213.top', // 分享链接
-//              imgUrl: 'http://img06.tooopen.com/images/20160712/tooopen_sy_170083325566.jpg', // 分享图标
-//              type: '', // 分享类型,music、video或link，不填默认为link
-//              dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
-//              success: function() {
-//                  // 用户确认分享后执行的回调函数
-//                  console.log('分享成功',that.$store.state.fakeData)
-//              },
-//              cancel: function() {
-//                  // 用户取消分享后执行的回调函数
-//              }
-//          });
-//      });
-//
-//      wx.error(function(res){
-//
-//          console.log('wx err',res);
-//
-//          //可以更新签名
-//      });
-//
-//  },
+  mounted(){
+      var that = this;
+      document.addEventListener('click',function (e) {
+          that.$store.commit('footListFalse')
+      })
+      var code;
+      var param=window.location.search;
+      param=param.substring(1,param.length);
+      var paramArr=param.split('&');
+      paramArr.forEach(function (value,key) {
+          if(value.indexOf('code')==0){
+              code=value.substr(5);
+          }
+      })
+      let userinfo = JSON.parse(localStorage.getItem('userinfo'));
+      if(code){
+          // 通过网页授权进来的
+          console.log('网页授权')
+          getUserInfo(code).then(function (res) {
+              if(!res.data.errcode){
+                  that.$store.commit('setUserInfo',res.data);
+                  localStorage.setItem('userinfo',JSON.stringify(res.data));
+                  //微信授权肯定第一次登陆，插入用户表
+                  insertUser(res.data).then(function (res) {
+                      console.log(res);
+                  })
+
+              }else{
+                  console.log(res.data.errcode);
+              }
+          })
+      }else{
+          if(Object.prototype.toString.call(userinfo).indexOf('Object') > -1 && userinfo.openid){
+              //先判断localstorage存在，再去user表里查询
+              console.log('localstorage已存在')
+              //判断当前用户是否在user表中，如果没有则跳转到授权页面
+              isUser(userinfo.openid).then(function (res) {
+                  if(res.data.isThere){
+                      console.log('此用户之前已登陆过本公众号');
+                      that.$store.commit('setUserInfo',res.data.data)
+                  }else {
+                      window.location.href ="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx22e00a74ae666fe7&redirect_uri=http://test.xq0213.top&response_type=code&scope=snsapi_userinfo#wechat_redirect"
+                  }
+              })
+          }else{
+              window.location.href ="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx22e00a74ae666fe7&redirect_uri=http://test.xq0213.top&response_type=code&scope=snsapi_userinfo#wechat_redirect"
+          }
+      }
+      wx.ready(function() {
+          console.log('wx.ready');
+          wx.onMenuShareAppMessage({
+              title: 'heiheihei', // 分享标题
+              desc: 'This is a test!', // 分享描述
+              link: 'test.xq0213.top', // 分享链接
+              imgUrl: 'http://img06.tooopen.com/images/20160712/tooopen_sy_170083325566.jpg', // 分享图标
+              type: '', // 分享类型,music、video或link，不填默认为link
+              dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+              success: function() {
+                  // 用户确认分享后执行的回调函数
+                  console.log('分享成功',that.$store.state.fakeData)
+              },
+              cancel: function() {
+                  // 用户取消分享后执行的回调函数
+              }
+          });
+      });
+
+      wx.error(function(res){
+
+          console.log('wx err',res);
+
+          //可以更新签名
+      });
+
+  },
   methods:{
       test(){
           wx.scanQRCode({
