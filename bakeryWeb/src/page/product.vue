@@ -53,7 +53,7 @@
             </mt-tab-container-item>
             <mt-tab-container-item id="3">
                 <ul class="list">
-                    <li class="item" v-for="item in data.assess">
+                    <li class="item" v-for="item in data.assess" v-show="data.assess.length>0">
                         <div class="info">
                             <!--<div class="author">-->
                             <img class="vip" :src="item.headimgurl">
@@ -67,6 +67,9 @@
                         <!--<ul class="pics"> 这里是用户上传图片-->
                             <!--<li><img src="../assets/images/1.jpg"></li>-->
                         <!--</ul>-->
+                    </li>
+                    <li>
+                        <p style="text-align: center;padding:10px 0">咱无评论，赶紧占据一楼吧</p>
                     </li>
                 </ul>
             </mt-tab-container-item>
