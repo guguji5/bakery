@@ -10,21 +10,18 @@
           <div class="pfk" :style="styleObject">
             <ul>
               <a href=""><li>经典系列</li></a>
-              <a href=""><li>法式系列</li></a>
-              <a href=""><li>儿童系列</li></a>
-              <a href=""><li>冰淇淋系列</li></a>
-              <a href=""><li>珍爱系列</li></a>
-              <a ><li>宠爱系列</li></a>
-              <a href=""><li>尊爱系列</li></a>
-              <a href=""><li>和风软点</li></a>
+              <a href=""><li>水果系列</li></a>
+              <!--<a href=""><li>欧式系列</li></a>-->
+              <!--<a href=""><li>儿童系列</li></a>-->
+              <a href=""><li>蛋糕零食</li></a>
             </ul>
             <em></em>
             <span></span>
           </div>
         </li>
-        <li class="ui-col ui-txt-c">
-          <a href="">和风软点</a>
-        </li>
+        <!--<li class="ui-col ui-txt-c">-->
+          <!--<a href="">和风软点</a>-->
+        <!--</li>-->
         <li class="ui-col ui-txt-c">
           <router-link to="/user">会员中心</router-link>
         </li>
