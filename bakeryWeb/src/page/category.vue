@@ -1,5 +1,5 @@
 <template>
-    <section class="lb-y">
+    <section class="lb-y1">
         <ul class="ui-tiled bg-fff nav ui-border-b">
             <li :class="{ on: showList}" @click="listTap('showList')">
                 <em class="xl">
@@ -14,8 +14,8 @@
                     排序
                 </em>
                 <div class="p-x">
-                    <a href="">价格</a>
-                    <a href="">销量</a>
+                    <a href="javascript:void(0)" @click="orderByPrice">价格</a>
+                    <a href="javascript:void(0)">销量</a>
                 </div>
             </li>
         </ul>
@@ -69,7 +69,8 @@
                 showList:false,
                 showOrder:false,
                 productList:[],
-                typeList:[]
+                typeList:[],
+                priceSortOrder:true   //正向 true  负向  false
             }
         },
         methods:{
@@ -150,6 +151,13 @@
                     Toast('已成功添加到购物车')
                 }
 
+            },
+            orderByPrice:function () {
+                var that = this;
+                that.priceSortOrder = !that.priceSortOrder;
+                that.productList = that.productList.sort(function (a,b) {
+                    return that.priceSortOrder?a.price-b.price:b.price-a.price;
+                })
             }
         },
         mounted(){
@@ -176,5 +184,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+    .lb-y1{
+        margin-bottom:45px
+    }
 </style>
