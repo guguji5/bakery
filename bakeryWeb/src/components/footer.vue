@@ -9,11 +9,11 @@
           <a href="javascript:;" @click="listChange($event)"><i></i>产品</a>
           <div class="pfk" :style="styleObject">
             <ul>
-              <a href=""><li>经典系列</li></a>
-              <a href=""><li>水果系列</li></a>
+              <a href="javascript:void(0)" @click="jump(0)"><li>经典系列</li></a>
+              <a href="javascript:void(0)" @click="jump(1)"><li>水果系列</li></a>
               <!--<a href=""><li>欧式系列</li></a>-->
               <!--<a href=""><li>儿童系列</li></a>-->
-              <a href=""><li>蛋糕零食</li></a>
+              <a href="javascript:void(0)" @click="jump(2)"><li>蛋糕零食</li></a>
             </ul>
             <em></em>
             <span></span>
@@ -52,7 +52,11 @@ export default {
       listChange(e){
           e.cancelBubble = true;
           this.$store.commit('footListChange')
-      }
+      },
+      jump(type){
+          type= type || '';
+          this.$router.push({ name: router, query: { type: type}})
+      },
   }
 }
 </script>

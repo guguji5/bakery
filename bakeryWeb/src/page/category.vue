@@ -162,8 +162,9 @@
         },
         mounted(){
             var that=this;
+            var type = that.$route.query.type;
 //            初始化获取菜单
-            this.getProductList();
+            this.getProductList(type);
 
             type().then(function (res) {
                 that.typeList=res.data;
